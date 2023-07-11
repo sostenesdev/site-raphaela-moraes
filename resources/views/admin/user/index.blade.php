@@ -15,9 +15,12 @@
         @endif
 @endif
 <div class="row">
-    <div class="m-sm-4">
-
-        @if($currentRouteName == 'admin.user.edit')
+    <div class="card">
+        <div class="card-title">
+            <h4>Usuários</h4>
+        </div> <!-- end card title -->
+        <div class="card-body">
+            @if($currentRouteName == 'admin.user.edit')
             <!-- multipart formdata -->
             <form method="post" action="{{ route('admin.user.update') }}"
                 enctype="multipart/form-data">
@@ -29,22 +32,24 @@
         <!-- id hidden -->
         <input type="hidden" name="id"
             value="{{ isset($user->id)? $user->id : "" }}" />
-        <div class="mb-3">
-            <label class="form-label">Nome</label>
-            <input class="form-control form-control-lg" type="text" name="name"
-            value="{{ isset($user->name)? $user->name : "" }}" placeholder="Enter your name" />
-        </div>
-        <div class="mb-3">
+            <div class="row">
+                <div class="col col-md-6">
+                    <label class="form-label">Nome</label>
+                    <input class="form-control form-control-lg" type="text" name="name"
+                    value="{{ isset($user->name)? $user->name : "" }}" placeholder="Enter your name" />
+                </div>
+            
+        <div class="col col-md-6">
             <label class="form-label">E-mail</label>
             <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email"
                 value="{{ isset($user->email)? $user->email:"" }}" />
         </div>
-        <div class="mb-3">
+        <div class="col col-md-6">
             <label class="form-label">Senha</label>
             <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password"
                 value="" />
         </div>
-        <div class="mb-3">
+        <div class="col col-md-6">
             <label class="form-label">Perfil</label>
             <select class="form-control form-control-lg" name="group" placeholder="Escolha o perfi">
                 @foreach($permissions as $key=>$val)
@@ -56,7 +61,9 @@
             {{-- <a href="index.html" class="btn btn-lg btn-primary">Salvar</a> --}}
             <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
         </div>
+        </div>
         </form>
+
     </div>
 </div>
 <div class="row">
