@@ -1,0 +1,88 @@
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">AdminKit</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Páginas
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.dashboard')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.dashboard')}}">
+							<i class="align-middle" data-feather="home"></i> <span class="align-middle">Início</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.posts')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.posts')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Posts</span>
+            			</a>
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.posts.new')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.posts.new')}}">
+              				<i class="align-middle" data-feather="file-plus"></i> <span class="align-middle">Novo Post</span>
+            			</a>
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.categories')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.categories')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categorias</span>
+            			</a>
+					</li>
+
+                    <li class="sidebar-item
+					@if($currentRouteName == 'admin.organograma')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.organograma')}}">
+              				<i class="align-middle" data-feather="users"></i> <span class="align-middle">Organograma</span>
+            			</a>
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.organograma.new')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.organograma.new')}}">
+              				<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Cargo</span>
+            			</a>
+					</li>
+
+					<li class="sidebar-header">
+						Administração
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.user')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.user')}}">
+                            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Usuários</span>
+                        </a>
+					</li>
+
+				</ul>
+			</div>
+		</nav>
