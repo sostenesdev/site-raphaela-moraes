@@ -69,6 +69,26 @@
             			</a>
 					</li>
 
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.proposicao')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.proposicao')}}">
+              				<i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Proposições</span>
+            			</a>
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.proposicao.new')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.proposicao.new')}}">
+              				<i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Add Proposição</span>
+            			</a>
+					</li>
+
 					<li class="sidebar-header">
 						Administração
 					</li>

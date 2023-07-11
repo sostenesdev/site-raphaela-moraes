@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrganogramaController;
 use App\Http\Controllers\Site\PostController as SitePostController;
 use App\Http\Controllers\ArquivoController;
+use App\Http\Controllers\Admin\ProposicaoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,6 +107,20 @@ Route::get('/organograma/edit/{id?}',[OrganogramaController::class, 'edit'])->na
 Route::post('/organograma/update',[OrganogramaController::class, 'update'])->name('admin.organograma.update')->middleware('authpermission:Administrador');
 //route that deletes a post
 Route::get('/organograma/delete/{id?}',[OrganogramaController::class, 'delete'])->name('admin.organograma.delete')->middleware('authpermission:Administrador');
+
+//listar proposicoes
+Route::get('/proposicao',[ProposicaoController::class, 'index'])->name('admin.proposicao')->middleware('authpermission:Administrador');
+//cadastrar proposicao
+Route::get('/proposicao/new',[ProposicaoController::class, 'new'])->name('admin.proposicao.new')->middleware('authpermission:Administrador');
+//salvar proposicao
+Route::post('/proposicao/save',[ProposicaoController::class, 'save'])->name('admin.proposicao.save')->middleware('authpermission:Administrador');
+//datatable para listar proposicao
+Route::get('/proposicao/data_table',[ProposicaoController::class, 'data_table'])->name('admin.proposicao.data_table')->middleware('authpermission:Administrador');
+//editar proposicao
+Route::get('/proposicao/edit/{id?}',[ProposicaoController::class, 'edit'])->name('admin.proposicao.edit')->middleware('authpermission:Administrador');
+//deletar proposicao
+Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
+
 
 });
 
