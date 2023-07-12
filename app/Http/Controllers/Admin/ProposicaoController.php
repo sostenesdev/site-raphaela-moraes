@@ -42,16 +42,16 @@ class ProposicaoController extends Controller
             'data' => 'required|max:255',
             'situacao' => 'required|max:255',
             'tipo' => 'required|max:255'
+        ],[
+            'titulo.required' => 'O campo título é obrigatório',
+            'slug.required' => 'O campo slug é obrigatório',
+            'descricao.required' => 'O campo descrição é obrigatório',
+            'protocolo.required' => 'O campo protocolo é obrigatório',
+            'processo.required' => 'O campo processo é obrigatório',
+            'data.required' => 'O campo data é obrigatório',
+            'situacao.required' => 'O campo situação é obrigatório',
+            'tipo.required' => 'O campo tipo é obrigatório'
         ]);
-        //add validation messages
-        $validationResult['titulo.required'] = 'O campo cargo é obrigatório';
-        $validationResult['slug.required'] = 'O campo título deve ser único';
-        $validationResult['descricao.required'] = 'O campo Nome deve ser único';
-        $validationResult['protocolo.required'] = 'O campo Nome deve ser único';
-        $validationResult['processo.required'] = 'O campo Nome deve ser único';
-        $validationResult['data.required'] = 'O campo Nome deve ser único';
-        $validationResult['situacao.required'] = 'O campo Nome deve ser único';
-        $validationResult['tipo.required'] = 'O campo Nome deve ser único';
 
         //tests if the validation was successful
         if (!$validationResult) {
@@ -59,7 +59,7 @@ class ProposicaoController extends Controller
         }
         $model = Proposicao::create($request->all());
         
-        return view('admin.proposicoes.index');
+        return redirect()->route('admin.proposicoes');
     }
 
     public function update(Request $request){
@@ -79,33 +79,32 @@ class ProposicaoController extends Controller
         'data' => 'required|max:255',
         'situacao' => 'required|max:255',
         'tipo' => 'required|max:255'
+    ],[
+        'titulo.required' => 'O campo título é obrigatório',
+        'slug.required' => 'O campo slug é obrigatório',
+        'descricao.required' => 'O campo descrição é obrigatório',
+        'protocolo.required' => 'O campo protocolo é obrigatório',
+        'processo.required' => 'O campo processo é obrigatório',
+        'data.required' => 'O campo data é obrigatório',
+        'situacao.required' => 'O campo situação é obrigatório',
+        'tipo.required' => 'O campo tipo é obrigatório'
     ]);
-    //add validation messages
-    $validationResult['titulo.required'] = 'O campo cargo é obrigatório';
-    $validationResult['slug.required'] = 'O campo título deve ser único';
-    $validationResult['descricao.required'] = 'O campo Nome deve ser único';
-    $validationResult['protocolo.required'] = 'O campo Nome deve ser único';
-    $validationResult['processo.required'] = 'O campo Nome deve ser único';
-    $validationResult['data.required'] = 'O campo Nome deve ser único';
-    $validationResult['situacao.required'] = 'O campo Nome deve ser único';
-    $validationResult['tipo.required'] = 'O campo Nome deve ser único';
-
 
        //tests if the validation was successful
        if (!$validationResult) {
-           return redirect()->route('admin.proposicoes',)->withErrors($validationResult);
+           return redirect()->route('admin.proposicao',)->withErrors($validationResult);
        }
 
        $model->update($request->all());
        
-       return view('admin.proposicoes.index');
+       return redirect()->route('admin.proposicao');
    }
 
     public function delete($id)
     {
         $model = Proposicao::find($id);
         $model->delete();
-        return redirect()->route('admin.proposicoes');
+        return redirect()->route('admin.proposicao');
     }
 
     //datatable method

@@ -10,8 +10,11 @@ class Proposicao extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'proposicoes';
     
     protected $fillable = [
+        'user_id',
         'id_integracao',
         'titulo',
         'slug',

@@ -118,6 +118,8 @@ Route::post('/proposicao/save',[ProposicaoController::class, 'save'])->name('adm
 Route::get('/proposicao/data_table',[ProposicaoController::class, 'data_table'])->name('admin.proposicao.data_table')->middleware('authpermission:Administrador');
 //editar proposicao
 Route::get('/proposicao/edit/{id?}',[ProposicaoController::class, 'edit'])->name('admin.proposicao.edit')->middleware('authpermission:Administrador');
+//atualizar proposicao
+Route::post('/proposicao/update',[ProposicaoController::class, 'update'])->name('admin.proposicao.update')->middleware('authpermission:Administrador');
 //deletar proposicao
 Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
 

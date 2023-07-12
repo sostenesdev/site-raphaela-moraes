@@ -6,15 +6,7 @@
     <div class="card-header">
         <h3 class="mb-0">Cadastrar Proposições</h3>
     </div>
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-        </div>
-    @endif
-    @if($currentRouteName == 'admin.organograma.edit')
+    @if($currentRouteName == 'admin.proposicao.edit')
         <!-- multipart formdata -->
         <form method="post" action="{{ route('admin.proposicao.update') }}" enctype="multipart/form-data">
             @else
@@ -28,16 +20,22 @@
         <div class="row">
             <div class="col col-md-6">
                 <div class="form-group">
-                    <label for="titulo"  class="form-label text-bold">Cargo</label>
-                    <input type="text" class="form-control" id="title" name="titulo" placeholder="Titulo"
+                    <label for="titulo"  class="form-label text-bold">Título</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo"
                         value="{{ $model->titulo }}">
+                         @error('titulo')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                 </div>
             </div>
                        <div class="col col-md-6">
                 <div class="form-group">
                     <label for="slug"  class="form-label text-bold">Slug</label>
-                    <input type="text" class="form-control" id="title" name="slug" placeholder="Slug"
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
                         value="{{ $model->slug }}">
+                            @error('slug')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                 </div>
             </div>
         </div>
@@ -47,13 +45,19 @@
                     <label for="protocolo"  class="form-label text-bold">Protocolo</label>
                     <input type="text" class="form-control" id="protocolo" name="protocolo" placeholder="Titulo"
                         value="{{ $model->protocolo }}">
+                        @error('protocolo')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                 </div>
             </div>
                        <div class="col col-md-6">
                 <div class="form-group">
                     <label for="processo"  class="form-label text-bold">Processo</label>
-                    <input type="text" class="form-control" id="title" name="slug" placeholder="processo"
+                    <input type="text" class="form-control" id="processo" name="processo" placeholder="processo"
                         value="{{ $model->processo }}">
+                        @error('processo')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                 </div>
             </div>
         </div>
@@ -62,7 +66,10 @@
                 <div class="form-group">
                     <label for="data"  class="form-label text-bold">Data</label>
                     <input type="date" class="form-control" id="data" name="data" placeholder="Data"
-                        value="{{ $model->data }}">
+                        value="{{ \Carbon\Carbon::parse($model->data)->format('d/m/Y') }}">
+                        @error('data')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                 </div>
             </div>
                        <div class="col col-md-6">
@@ -70,6 +77,9 @@
                     <label for="situacao"  class="form-label text-bold">situacao</label>
                     <input type="text" class="form-control" id="situacao" name="situacao" placeholder="situacao"
                         value="{{ $model->situacao }}">
+                        @error('situacao')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                 </div>
             </div>
         </div>
@@ -79,10 +89,14 @@
                 <div class="form-group">
                     <label for="tipo"  class="form-label text-bold">Tipo</label>
                     <select class="form-control" id="tipo" name="tipo" placeholder="Tipo">
+                        <option value="">Selecione um tipo</option>
                         @foreach($tipos as $tipo)
                             <option value="{{ $tipo->slug }}" {{ $tipo->slug == $model->tipo ? 'selected' : '' }}>{{ $tipo->nome }}</option>
                         @endforeach
                     </select>
+                    @error('tipo')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -92,6 +106,9 @@
                 <label for="descricao"  class="form-label">Descrição</label>
                 <textarea type="text" class="form-control" id="descricao" name="descricao" 
                 placeholder="Descrição da proposição">{{ $model->descricao }}</textarea>
+                @error('descricao')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
         </div>
         </div>
@@ -108,5 +125,14 @@
 @endsection
 
 @section('javascript')
-<!-- <script type="text/javascript" src="{{ asset('assets/js/funcoes.js') }}"></script> -->
+<script type="text/javascript" src="{{ asset('assets/js/funcoes.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+        $('#titulo').on('input', function () {
+            var titulo = $(this).val();
+            var slug = gerarSlug(titulo);
+            $('#slug').val(slug);
+        });
+    });
+</script>
 @endsection
