@@ -1,4 +1,4 @@
-@extends('layouts.site.master')
+@extends('layouts.site_novo.master')
 @section('title', 'Início')
 {{-- Destaque só vai existir na página inicial --}}
 @section('destaque_content')
