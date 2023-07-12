@@ -5,7 +5,7 @@
 							<div class="card-body">
 								<div class="m-sm-4">
 									<div class="text-center">
-										<img src='{{asset("assets/img/avatars/avatar.jpg")}}' alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+										<img src='{{asset("assets/img/avatars/avatar.jpg")}}' alt="avatar" class="img-fluid rounded-circle" width="132" height="132" />
 									</div>
                                      @if ($errors->has('email'))
                                         <div class="text-center">
@@ -22,14 +22,14 @@
 											<label class="form-label">Password</label>
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
 											<small>
-                                                <a href="index.html">Forgot password?</a>
+                                                <a href="#">Esqueceu a senha?</a>
                                             </small>
 										</div>
 										<div>
 											<label class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
                                                 <span class="form-check-label">
-                                                Remember me next time
+                                                Lembrar-me
                                                 </span>
                                             </label>
 										</div>
