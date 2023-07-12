@@ -18,6 +18,10 @@
 							<i class="align-middle" data-feather="home"></i> <span class="align-middle">Início</span>
 						</a>
 					</li>
+						<a class="sidebar-link" href="{{route('admin.pagina_inicial')}}">
+							<i class="align-middle" data-feather="home"></i> <span class="align-middle">Conteúdo Página Inicial</span>
+						</a>
+					</li>
 
 					<li class="sidebar-item
 					@if($currentRouteName == 'admin.posts')

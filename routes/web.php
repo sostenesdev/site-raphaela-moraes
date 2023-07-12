@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\OrganogramaController;
 use App\Http\Controllers\Site\PostController as SitePostController;
 use App\Http\Controllers\ArquivoController;
 use App\Http\Controllers\Admin\ProposicaoController;
+use App\Http\Controllers\Admin\PaginaInicialController as PaginaInicialContentController;
+use App\Http\Controllers\Site\PaginaInicialController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +29,11 @@ use App\Http\Controllers\Admin\ProposicaoController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home')->middleware('websiteglobal');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home')->middleware('websiteglobal');
+
+Route::get('/',[PaginaInicialController::class, 'index'])->name('home')->middleware('websiteglobal');
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');
@@ -123,6 +128,10 @@ Route::post('/proposicao/update',[ProposicaoController::class, 'update'])->name(
 //deletar proposicao
 Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
 
+//get pagina inicial
+Route::get('/pagina_inicial',[PaginaInicialContentController::class, 'index'])->name('admin.pagina_inicial')->middleware('authpermission:Administrador');
+//save pagina inicial
+Route::post('/pagina_inicial/save',[PaginaInicialContentController::class, 'save'])->name('admin.pagina_inicial.save')->middleware('authpermission:Administrador');
 
 });
 
