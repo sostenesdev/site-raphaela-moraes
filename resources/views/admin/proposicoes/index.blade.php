@@ -5,7 +5,7 @@
     <div class='card'>
         <!-- Card header -->
         <div class='card-header'>
-            <h3 class='mb-0'>Cargos (Organograma)</h3>
+            <h3 class='mb-0'>Proposições</h3>
         </div>
         <!-- Card body -->
         <div class='card-body'>
@@ -15,10 +15,11 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Cargo</th>
-                                <th>Funcao</th>
-                                <th>Nome</th>
-                                <th>Descricao</th>
+                                <th>Título</th>
+                                <th>Protocolo</th>
+                                <th>Processo</th>
+                                <th>Data</th>
+                                <th>Tipo</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -37,30 +38,33 @@
             serverSide: true,
             processing: true,
             "lengthChange": false,
-            ajax: '{{ route("admin.organograma.data_table") }}',
+            ajax: '{{ route("admin.proposicao.data_table") }}',
             columns: [{
                     data: 'id'
                 },
                 {
-                    data: 'cargo'
+                    data: 'titulo'
                 },
                 {
-                    data: 'funcao'
+                    data: 'protocolo'
                 },
                 {
-                    data: 'pessoa_nome'
+                    data: 'processo'
                 },
                 {
-                    data: 'descricao'
+                    data: 'data'
+                },
+                {
+                    data: 'tipo'
                 },
                 {
                     class: 'dt-center',
                     render: function (data, type, row) {
                         let buttons =
-                            '<div class= "text-center"><a class="btn btn-sm btn-primary pl-2 pr-3" href="{{ route("admin.organograma.edit") }}/' +
+                            '<div class= "text-center"><a class="btn btn-sm btn-primary pl-2 pr-3" href="{{ route("admin.proposicao.edit") }}/' +
                             row.id + '"><i class="fa fa-pencil"></i></a>';
                         buttons = buttons +
-                            '<a class="btn btn-sm btn-danger pl-2 pr-3" href="{{ route("admin.organograma.delete") }}/' +
+                            '<a class="btn btn-sm btn-danger pl-2 pr-3" href="{{ route("admin.proposicao.delete") }}/' +
                             row.id + '"><i class="fa fa-trash"></i></a></div>';
                         return buttons;
                     }
