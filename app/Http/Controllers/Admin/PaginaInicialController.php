@@ -6,14 +6,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PaginaInicial;
 use App\Services\FileService;
+use App\Models\TipoProposicao;
+use App\Models\Cargo;
 
 class PaginaInicialController extends Controller
 {
     public function index()
     {
+        //get all TipoProposicao
+        $tipoProposicaoList = (new TipoProposicao())->getAll();
+        $cargos = Cargo::All();
+
+
         $paginaInicial = PaginaInicial::orderBy('id', 'desc')->first();
         $paginaInicial = $paginaInicial == null ? new PaginaInicial() : $paginaInicial;
-        return view('admin.pagina-inicial',['model' => $paginaInicial]);
+        return view('admin.pagina-inicial',[
+            'model' => $paginaInicial,
+            'tipoProposicaoList' => $tipoProposicaoList, 
+            'cargos' => $cargos
+        ]);
     }
 
     //save pagina inicial
