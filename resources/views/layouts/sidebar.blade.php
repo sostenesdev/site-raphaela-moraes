@@ -53,6 +53,36 @@
             			</a>
 					</li>
 
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.projeto')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.projeto')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Projeto</span>
+            			</a>
+					</li>
+
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.projeto.new')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.projeto.new')}}">
+              				<i class="align-middle" data-feather="file-plus"></i> <span class="align-middle">Novo Projeto</span>
+            			</a>
+					</li>
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.categoria-projeto')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.categoria-projeto')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categoria de Projeto</span>
+            			</a>
+					</li>
+
+
                     <li class="sidebar-item
 					@if($currentRouteName == 'admin.organograma')
 						active

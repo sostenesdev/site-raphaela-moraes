@@ -7,10 +7,14 @@
         <div class="card-header">
             <h3 class="card-title">Cadastrar Categorias</h3>
         </div>
-        @if($currentRouteName == 'admin.categories.edit')
-            <form method="post" action="{{route('admin.categories.update')}}">
-        @else
-            <form method="post" action="{{route('admin.categories.save') }}">
+        @if($currentRouteName == 'admin.categories')
+            <form method="post" action="{{route('admin.categories.save')}}">
+         @elseif($currentRouteName == 'admin.categories.edit')
+            <form method="post" action="{{ route('admin.categories.update') }}" enctype="multipart/form-data">
+        @elseif($currentRouteName == 'admin.categoria-projeto')
+            <form method="post" action="{{ route('admin.categoria-projeto.save') }}" enctype="multipart/form-data">
+        @elseif($currentRouteName == 'admin.categoria-projeto.edit')
+            <form method="post" action="{{ route('admin.categoria-projeto.update') }}" enctype="multipart/form-data">        
         @endif
             @csrf
             <input type="hidden" name="id" value="{{$category->id}}" />
@@ -77,7 +81,7 @@
             serverSide: true,
             processing: true,
             "lengthChange": false,
-            ajax: '{{ route("admin.categories.data_table") }}',
+            ajax: '{{ $currentRouteName == 'admin.categories'? route("admin.categories.data_table"): route("admin.categoria-projeto.data_table") }}',
             columns: [{
                     data: 'id'
                 },

@@ -22,7 +22,8 @@ class Post extends Model
         'autor',
         'user_id',
         'status',
-        'highlighted'
+        'highlighted',
+        'is_projeto'
     ];
 
     protected $guarded = [

@@ -42,7 +42,7 @@
             serverSide: true,
             processing: true,
             "lengthChange": false,
-            ajax: '{{ route("admin.posts.data_table") }}',
+                ajax: '{{ $currentRouteName == 'admin.posts'? route("admin.posts.data_table") :route("admin.projeto.data_table") }}',
             columns: [{
                     data: 'id'
                 },

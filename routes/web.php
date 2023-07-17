@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccessDeniedController;
+use App\Http\Controllers\Admin\CategoriaProjetoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Site\PostController as SitePostController;
 use App\Http\Controllers\ArquivoController;
 use App\Http\Controllers\Admin\ProposicaoController;
 use App\Http\Controllers\Admin\PaginaInicialController as PaginaInicialContentController;
+use App\Http\Controllers\Admin\ProjetoController;
 use App\Http\Controllers\Site\PaginaInicialController;
 
 /*
@@ -87,6 +89,34 @@ Route::get('/category/delete/{id?}',[CategoryController::class, 'delete'])->name
 Route::get('/category/edit/{id?}',[CategoryController::class, 'edit'])->name('admin.categories.edit')->middleware('authpermission:Administrador');
 //create a route to update a category
 Route::post('/category/update',[CategoryController::class, 'update'])->name('admin.categories.update')->middleware('authpermission:Administrador');
+//Projetos
+Route::get('/projetos',[ProjetoController::class, 'index'])->name('admin.projeto')->middleware('authpermission:Administrador');
+Route::get('/projetos/new',[ProjetoController::class, 'new'])->name('admin.projeto.new')->middleware('authpermission:Administrador');
+//route that saves a post
+Route::post('/projetos/save',[ProjetoController::class, 'save'])->name('admin.projeto.save')->middleware('authpermission:Administrador');
+//post route to datatable posts
+Route::get('/projetos/data_table',[ProjetoController::class, 'data_table'])->name('admin.projeto.data_table')->middleware('authpermission:Administrador');
+//route that edits a post
+Route::get('/projetos/edit/{id?}',[ProjetoController::class, 'edit'])->name('admin.projeto.edit')->middleware('authpermission:Administrador');
+//route that updates a post
+Route::post('/projetos/update',[ProjetoController::class, 'update'])->name('admin.projeto.update')->middleware('authpermission:Administrador');
+//route that deletes a post
+Route::get('/projetos/delete/{id?}',[ProjetoController::class, 'delete'])->name('admin.projeto.delete')->middleware('authpermission:Administrador');
+//create a route to list categories
+Route::get('/categoria-projeto',[CategoriaProjetoController::class, 'index'])->name('admin.categoria-projeto')->middleware('authpermission:Administrador');
+//create a route to save a category model using CategoryController
+Route::post('/categoria-projeto/save',[CategoriaProjetoController::class, 'save'])->name('admin.categoria-projeto.save')->middleware('authpermission:Administrador');
+
+//create a route to datatable categories
+Route::get('/categoria-projeto/data_table',[CategoriaProjetoController::class, 'data_table'])->name('admin.categoria-projeto.data_table')->middleware('authpermission:Administrador');
+//create a route to delete a category
+Route::get('/categoria-projeto/delete/{id?}',[CategoriaProjetoController::class, 'delete'])->name('admin.categoria-projeto.delete')->middleware('authpermission:Administrador');
+//create a route to edit a category
+Route::get('/categoria-projeto/edit/{id?}',[CategoriaProjetoController::class, 'edit'])->name('admin.categoria-projeto.edit')->middleware('authpermission:Administrador');
+//create a route to update a category
+Route::post('/categoria-projeto/update',[CategoriaProjetoController::class, 'update'])->name('admin.categoria-projeto.update')->middleware('authpermission:Administrador');
+//EndProjetos
+
 //route to save an image
 Route::post('/file/save_image',[FileController::class, 'saveImage'])->name('admin.file.save_image')->middleware('authpermission:Administrador');
 //ro to save a user

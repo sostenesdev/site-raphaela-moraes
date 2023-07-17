@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Services\FileService;
 
 
-class PostController extends Controller
+class ProjetoController extends Controller
 {
     //returns a method that displays the view posts
     public function index()
@@ -55,6 +55,7 @@ class PostController extends Controller
             $arquivo = $fileService->save($request, 'file');
             $post->image = $arquivo->nome;
             $post->thumbnail = $arquivo->nome;
+            $post->is_projeto = true;
             $post->save();
         }
         // if($file != null){
@@ -64,7 +65,7 @@ class PostController extends Controller
         //     $post->save();
         // }
         $post->categories()->attach($request->categories);
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.projeto');
     }
 
     //method that edits a post with many categories
@@ -102,6 +103,7 @@ class PostController extends Controller
         $post->update($request->all());
         $post->user_id = auth()->user()->id;
         $post->updated_at = now();
+        $post->is_projeto = true;
         $post->categories()->sync($request->categories);
         return redirect()->route('admin.posts');
     }
@@ -112,16 +114,15 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->categories()->detach();
         $post->delete();
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.projeto');
     }
 
     //datatable method
     public function data_table(Request $request)
     {
-        $response = DatatableService::getDataWithBoolFilter(new Post(),'is_projeto', false, 'title', $request);
+        $response = DatatableService::getDataWithBoolFilter(new Post(),'is_projeto', true, 'title', $request);
         return response()->json($response, 200);
     }
-
 
     //get a file from request and returns a url to the file
     public function imageUpload(Request $request)

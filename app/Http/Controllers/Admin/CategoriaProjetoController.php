@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Services\DatatableService;
 
-class CategoryController extends Controller
+class CategoriaProjetoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +20,9 @@ class CategoryController extends Controller
         return view('admin.categories.index', ['category' => $category]);
     }
 
-    //data_table method
     public function data_table(Request $request)
     {
-        $response = DatatableService::getDataWithBoolFilter(new Category(),'is_projeto', false, 'nome', $request);
+        $response = DatatableService::getDataWithBoolFilter(new Category(),'is_projeto', true, 'nome', $request);
         return response()->json($response, 200);
     }
 
@@ -45,6 +44,7 @@ class CategoryController extends Controller
             
         }
         $category = Category::create($request->all());
+        $category->is_projeto = true;
         $category->save();
         // return response()->json($category, 201);
         return redirect()->route('admin.categories');
@@ -85,7 +85,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             //return error to view
-            return view('admin.categories.index', ['category'=> $category,'error' => 'Erro ao salvar categoria']);
+            return view('admin.categoria-projeto.index', ['category'=> $category,'error' => 'Erro ao salvar categoria']);
             
             
         }
@@ -96,9 +96,10 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->name = $request->name;
         $category->slug = $request->slug;
+        $category->is_projeto = true;
         $category->save();
         //redirect to index
-        return redirect()->route('admin.categories'); 
+        return redirect()->route('admin.categoria-projeto'); 
 
     }
 

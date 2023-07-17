@@ -19,8 +19,14 @@
     @if($currentRouteName == 'admin.posts.edit')
         <!-- multipart formdata -->
         <form method="post" action="{{ route('admin.posts.update') }}" enctype="multipart/form-data">
-            @else
+    @elseif($currentRouteName == 'admin.posts.new')
                 <form method="post" action="{{ route('admin.posts.save') }}" enctype="multipart/form-data">
+
+    @elseif($currentRouteName == 'admin.projeto.edit')
+        <!-- multipart formdata -->
+        <form method="post" action="{{ route('admin.projeto.update') }}" enctype="multipart/form-data">
+    @elseif($currentRouteName == 'admin.projeto.new')
+        <form method="post" action="{{ route('admin.projeto.save') }}" enctype="multipart/form-data">        
     @endif
     @csrf
     <input type="hidden" name="id" value="{{ $post->id }}" />

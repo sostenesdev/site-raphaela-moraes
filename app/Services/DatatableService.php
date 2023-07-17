@@ -27,4 +27,21 @@ class DatatableService{
         $response = (object)['data'=>$result, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal, $draw];
         return $response;
     }
+
+    public static function getDataWithBoolFilter(Model $model, string $boolFilter, bool $boolValue, string $searchParam, Request $request){
+        $start = $request['start'];
+        $search = $request['search'];
+        $draw = $request['draw'];
+        $pageSize = 10;
+        $search = $request['search']['value'];
+        $query = $model::where($boolFilter,$boolValue);
+        if($search != null){
+            $result = $query->where($searchParam,'LIKE', '%'.$search.'%' );
+        }
+        
+        $result = $query->skip($start)->take($pageSize)->get();
+        $recordsTotal = $model::count();
+        $response = (object)['data'=>$result, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal, $draw];
+        return $response;
+    }
 }
