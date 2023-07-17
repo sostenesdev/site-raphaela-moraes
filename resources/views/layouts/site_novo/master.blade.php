@@ -245,7 +245,7 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
             @foreach($posts as $post)
-              <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+              <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="member d-flex align-items-start">
                   <div class="pic"><img src="{{ $post->getImage()}}" width="30%" class="img-fluid" alt=""></div>
                   <div class="member-info">
