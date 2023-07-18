@@ -87,7 +87,11 @@ class ProjetoController extends Controller
         $file = $request->file('file');
         if($file != null){
             // $base64 = $fileService->requestFileToBase64($request, 'file');
-            $arquivo = (new FileService())->update($request, $post->image, $fileName='file');
+            if($post->image != null){
+                $arquivo = (new FileService())->update($request, $post->image, $fileName='file');
+            }else{
+                $arquivo =(new FileService())->save($request, 'file');
+            }
             $post->image = $arquivo->nome;
             $post->thumbnail = $arquivo->nome;
         }
