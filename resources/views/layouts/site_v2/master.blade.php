@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Massive - Multipurpose HTML Template.</title>
+    <title>{{env('SITE_NAME')}}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/site_v2/images/favicon.svg')}}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/site_v2/images/favicon.png')}}" />
     <!-- Place favicon.ico in the root directory -->
 
     <!-- Web Font -->
