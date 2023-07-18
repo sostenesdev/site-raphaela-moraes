@@ -13,16 +13,16 @@ class PaginaInicialController extends Controller
 {
     public function index()
     {
-        $posts = Post::All();
-        $cargos = Cargo::All();
+        $latestPosts = Post::orderBy('id', 'desc')->take(3)->get();
+        // $cargos = Cargo::All();
         $tipoProposicaoList = (new TipoProposicao())->getAll();
         $paginaInicial = PaginaInicial::orderBy('id', 'desc')->first();
         $paginaInicial = $paginaInicial == null ? new PaginaInicial() : $paginaInicial;
         return view('welcome',[
             'model' => $paginaInicial,
             'tipoProposicaoList' => $tipoProposicaoList,
-            'cargos' => $cargos,
-            'posts' => $posts
+            // 'cargos' => $cargos,
+            'latestPosts' => $latestPosts
         ]);
     }
 }
