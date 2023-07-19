@@ -78,7 +78,11 @@ class ProjetoController extends Controller
     {
         $post = Post::find($id);
         $post->categories;
-        return view('admin.posts.edit', ['post' => $post,'categories' => Category::all()]);
+        return view('admin.posts.edit', [
+            'post' => $post,
+            'categories' => Category::all(),
+            'titulo' => 'Editar '.$this->titulo,
+            'tipo_pagina' => $this->tipo_pagina]);
     }
 
     //method that updates a post with many categories

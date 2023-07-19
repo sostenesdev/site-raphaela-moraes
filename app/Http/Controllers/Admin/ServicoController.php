@@ -30,7 +30,8 @@ class ServicoController extends Controller
         return view('admin.posts.edit', [
             'post' => new Post(), 
             'categories' => Category::all(),
-            'titulo' => 'Cadastrar '.$this->titulo]);
+            'titulo' => 'Cadastrar '.$this->titulo,
+            'tipo_pagina' => $this->tipo_pagina]);
     }
 
     //method that save a post with many categories
@@ -83,7 +84,8 @@ class ServicoController extends Controller
         $post->categories;
         return view('admin.posts.edit', [
             'post' => $post,'categories' => Category::all(),
-            'titulo' => 'Editar '.$this->titulo]);
+            'titulo' => 'Editar '.$this->titulo,
+            'tipo_pagina' => $this->tipo_pagina]);
     }
 
     //method that updates a post with many categories

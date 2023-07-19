@@ -16,17 +16,17 @@
     @endif
     {{--
     <form method="post" id="addPost" action="{{ route('admin.posts.save') }}"> --}}
-    @if($currentRouteName == 'admin.posts.edit')
+    @if(!isset($tipo_pagina) && $currentRouteName == 'admin.posts.edit')
         <!-- multipart formdata -->
         <form method="post" action="{{ route('admin.posts.update') }}" enctype="multipart/form-data">
-    @elseif($currentRouteName == 'admin.posts.new')
+    @elseif(!isset($tipo_pagina) && $currentRouteName == 'admin.posts.new')
                 <form method="post" action="{{ route('admin.posts.save') }}" enctype="multipart/form-data">
 
-    @elseif($currentRouteName == 'admin.projeto.edit')
+    @elseif($currentRouteName == 'admin.'.$tipo_pagina.'.edit')
         <!-- multipart formdata -->
-        <form method="post" action="{{ route('admin.projeto.update') }}" enctype="multipart/form-data">
-    @elseif($currentRouteName == 'admin.projeto.new')
-        <form method="post" action="{{ route('admin.projeto.save') }}" enctype="multipart/form-data">        
+        <form method="post" action="{{ route('admin.'.$tipo_pagina.'.update') }}" enctype="multipart/form-data">
+    @elseif($currentRouteName == 'admin.'.$tipo_pagina.'.new')
+        <form method="post" action="{{ route('admin.'.$tipo_pagina.'.save') }}" enctype="multipart/form-data">        
     @endif
     @csrf
     <input type="hidden" name="id" value="{{ $post->id }}" />
