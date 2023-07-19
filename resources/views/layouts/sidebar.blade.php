@@ -52,7 +52,25 @@
               				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categorias</span>
             			</a>
 					</li>
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.servico')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.servico')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Serviços Online</span>
+            			</a>
+					</li>
 
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.servico.new')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.servico.new')}}">
+              				<i class="align-middle" data-feather="file-plus"></i> <span class="align-middle">Novo Serviço</span>
+            			</a>
+					</li>
 					<li class="sidebar-item
 					@if($currentRouteName == 'admin.projeto')
 						active

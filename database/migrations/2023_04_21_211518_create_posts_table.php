@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('thumbnail')->nullable();
             $table->integer('status')->default(0);
             $table->boolean('highlighted')->default(false);
-            $table->boolean('is_projeto')->default(false);
+            $table->string('tipo_pagina')->nullable();
             $table->foreignId('user_id')->constrained()->on('users');
             $table->softDeletes();
             $table->timestamps();

@@ -13,16 +13,24 @@ use Illuminate\Support\Facades\Storage;
 use App\Services\FileService;
 
 
-class PostController extends Controller
+class ServicoController extends Controller
 {
+    private $tipo_pagina = 'servico';
+    private $titulo = 'Serviços';
     //returns a method that displays the view posts
     public function index()
     {
-        return view('admin.posts.index');
+        return view('admin.posts.index',[
+            'tipo_pagina' => $this->tipo_pagina,
+            'titulo' => $this->titulo
+        ]);
     }
     public function new()
     {
-        return view('admin.posts.edit', ['post' => new Post(), 'categories' => Category::all()]);
+        return view('admin.posts.edit', [
+            'post' => new Post(), 
+            'categories' => Category::all(),
+            'titulo' => 'Cadastrar '.$this->titulo]);
     }
 
     //method that save a post with many categories
@@ -55,6 +63,7 @@ class PostController extends Controller
             $arquivo = $fileService->save($request, 'file');
             $post->image = $arquivo->nome;
             $post->thumbnail = $arquivo->nome;
+            $post->tipo_pagina = $this->tipo_pagina;
             $post->save();
         }
         // if($file != null){
@@ -64,7 +73,7 @@ class PostController extends Controller
         //     $post->save();
         // }
         $post->categories()->attach($request->categories);
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.'.$this->tipo_pagina);
     }
 
     //method that edits a post with many categories
@@ -72,7 +81,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->categories;
-        return view('admin.posts.edit', ['post' => $post,'categories' => Category::all()]);
+        return view('admin.posts.edit', [
+            'post' => $post,'categories' => Category::all(),
+            'titulo' => 'Editar '.$this->titulo]);
     }
 
     //method that updates a post with many categories
@@ -106,6 +117,7 @@ class PostController extends Controller
         $post->update($request->all());
         $post->user_id = auth()->user()->id;
         $post->updated_at = now();
+        $post->tipo_pagina = $this->tipo_pagina;
         $post->categories()->sync($request->categories);
         return redirect()->route('admin.posts');
     }
@@ -116,16 +128,15 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->categories()->detach();
         $post->delete();
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.'.$this->tipo_pagina);
     }
 
     //datatable method
     public function data_table(Request $request)
     {
-        $response = DatatableService::getDataWithBoolFilter(new Post(),'tipo_pagina', null, 'title', $request);
+        $response = DatatableService::getDataWithBoolFilter(new Post(),'tipo_pagina', $this->tipo_pagina, 'title', $request);
         return response()->json($response, 200);
     }
-
 
     //get a file from request and returns a url to the file
     public function imageUpload(Request $request)

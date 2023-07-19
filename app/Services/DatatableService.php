@@ -28,13 +28,13 @@ class DatatableService{
         return $response;
     }
 
-    public static function getDataWithBoolFilter(Model $model, string $boolFilter, bool $boolValue, string $searchParam, Request $request){
+    public static function getDataWithBoolFilter(Model $model, string $blFilter, $blValue="post", string $searchParam, Request $request){
         $start = $request['start'];
         $search = $request['search'];
         $draw = $request['draw'];
         $pageSize = 10;
         $search = $request['search']['value'];
-        $query = $model::where($boolFilter,$boolValue);
+        $query = $model::where($blFilter,$blValue);
         if($search != null){
             $result = $query->where($searchParam,'LIKE', '%'.$search.'%' );
         }

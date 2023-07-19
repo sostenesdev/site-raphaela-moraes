@@ -4,7 +4,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="mb-0">Cadastrar Post</h3>
+        <h3 class="mb-0">{{isset($titulo)?$titulo:'Cadastrar Post'}}</h3>
     </div>
     @if($errors->any())
         <div class="alert alert-danger">
@@ -163,7 +163,7 @@
 <script>
     tinymce.init({
         selector: 'textarea#tiny',
-        plugins: 'lists link image media table code autoresize textpattern',
+        plugins: 'lists link image media table code autoresize',
         toolbar: 'undo redo | formatselect | bold italic strikethrough | link | alignleft aligncenter alignright alignjustify | bullist numlist | blockquote | image | media | table | code',
         content_style: 'body { font-family: Helvetica, Arial, sans-serif; font-size: 16px; }',
         fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
@@ -218,7 +218,7 @@
             var slug = gerarSlug(titulo);
             $('#slug').val(slug);
         });
-        $('.select-categoria').select2();
+        {{-- $('.select-categoria').select2(); --}}
 
     });
 

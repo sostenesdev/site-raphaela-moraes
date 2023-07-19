@@ -5,7 +5,7 @@
     <div class='card'>
         <!-- Card header -->
         <div class='card-header'>
-            <h3 class='mb-0'>Posts</h3>
+            <h3 class='mb-0'>{{isset($titulo)?$titulo: 'Posts'}}</h3>
         </div>
         <!-- Card body -->
         <div class='card-body'>
@@ -42,7 +42,7 @@
             serverSide: true,
             processing: true,
             "lengthChange": false,
-                ajax: '{{ $currentRouteName == 'admin.posts'? route("admin.posts.data_table") :route("admin.projeto.data_table") }}',
+                ajax: '{{ $currentRouteName == 'admin.posts'? route("admin.posts.data_table") :route("admin.$tipo_pagina.data_table") }}',
             columns: [{
                     data: 'id'
                 },

@@ -23,7 +23,7 @@ class Post extends Model
         'user_id',
         'status',
         'highlighted',
-        'is_projeto'
+        'tipo_pagina'
     ];
 
     protected $guarded = [
