@@ -13,7 +13,8 @@ class PaginaInicialController extends Controller
 {
     public function index()
     {
-        $latestPosts = Post::orderBy('id', 'desc')->take(3)->get();
+        $latestPosts = Post::where('tipo_pagina', null)->orderBy('id', 'desc')->take(3)->get();
+        $servicos = Post::where('tipo_pagina', 'servico')->orderBy('id', 'desc')->take(3)->get();
         // $cargos = Cargo::All();
         $tipoProposicaoList = (new TipoProposicao())->getAll();
         $paginaInicial = PaginaInicial::orderBy('id', 'desc')->first();
@@ -22,7 +23,8 @@ class PaginaInicialController extends Controller
             'model' => $paginaInicial,
             'tipoProposicaoList' => $tipoProposicaoList,
             // 'cargos' => $cargos,
-            'latestPosts' => $latestPosts
+            'latestPosts' => $latestPosts,
+            'servicos' => $servicos
         ]);
     }
 }

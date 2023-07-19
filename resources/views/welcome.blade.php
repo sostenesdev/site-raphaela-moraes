@@ -52,7 +52,7 @@
                             <img class="thumb" width="30%" src="{{$lp->getImage()}}" alt="#">
                         </div>
                         <div class="content-body">
-                            <h4 class="title"><a href="#">{{$lp->title}}</a></h4>
+                            <h4 class="title"><a href="{{ route("site.post", ['slug'=>$lp->slug]) }}">{{$lp->title}}</a></h4>
                             <p>{{$lp->content_preview}}</p>
                         </div>
                     </div>
@@ -67,43 +67,18 @@
     <div class="row newsletter-area text-center pt-3 pb-3">
         <div class="row">
           <h3 class="pb-3">Serviços Online</h3>
-          <div class="col-lg-3 col-12">
-            <div class="mini-call-action wow fadeInRight" data-wow-delay=".4s">
-                <h4>Adoçao de Animais</h4>
-                <p>Serviço de adoção</p>
-                <div class="button">
-                    <a href="#" class="btn">Saiba mais</a>
+            @foreach($servicos as $servico)
+                <div class="col-lg-3 col-12">
+                    <div class="mini-call-action wow fadeInRight" data-wow-delay=".4s">
+                        <h4>{{$servico->title}}</h4>
+                        <p>{{$servico->subtitle}}</p>
+                        <div class="button">
+                            <a href="{{ route("site.post", ['slug'=>$servico->slug]) }}" class="btn">Saiba mais</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-12">
-            <div class="mini-call-action wow fadeInRight" data-wow-delay=".6s">
-                <h4>Cadastro de Animais</h4>
-                <p>Cadastro de animais</p>
-                <div class="button">
-                    <a href="#" class="btn">Saiba mais</a>
-            </div>
-        </div>
-        </div>
-        <div class="col-lg-3 col-12">
-            <div class="mini-call-action wow fadeInRight" data-wow-delay=".6s">
-                <h4>Cadastro de Animais</h4>
-                <p>Cadastro de animais</p>
-                <div class="button">
-                    <a href="#" class="btn">Saiba mais</a>
-                </div>
-            </div>
-        </div>
+            @endforeach
 
-        <div class="col-lg-3 col-12">
-            <div class="mini-call-action wow fadeInRight" data-wow-delay=".6s">
-                <h4>Cadastro de Animais</h4>
-                <p>Cadastro de animais</p>
-                <div class="button">
-                    <a href="#" class="btn">Saiba mais</a>
-                </div>
-            </div>
-        </div>
         </div>
       </div>
     </div>

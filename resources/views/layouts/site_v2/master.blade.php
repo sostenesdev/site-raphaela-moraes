@@ -65,9 +65,9 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ml-auto">
                                     <li class="nav-item">
-                                        <a class="active" href="index.html">Início</a></li>
+                                        <a class="active" href="{{route('home')}}">Início</a></li>
                                     <li class="nav-item">
-                                        <a href="about-us.html">Notícias</a>
+                                        <a href="{{route('site.latest-posts')}}">Notícias</a>
                                     </li>
                                     <li class="nav-item"><a href="#">Projetos</a></li>
                                     <li class="nav-item"><a href="#">Agenda</a> </li>
@@ -111,7 +111,7 @@
                             <div class="logo">
                                 <a href="index.html"><img src="{{asset('assets/site_v2/images/logo/logo_branca.png')}}" alt="Logo"></a>
                             </div>
-                            <p>{{$model->subtitulo}}</p>
+                            <p>{{isset($subtitulo)?$subtitulo: ""}}</p>
                             <div class="footer-social">
                                 <ul>
                                     <li><a href="#"><i class="lni lni-instagram"></i></a></li>
@@ -127,8 +127,8 @@
                         <div class="single-footer f-link">
                             <h3>Links</h3>
                             <ul>
-                                <li><a href="#">Início</a></li>
-                                <li><a href="#">Notícias</a></li>
+                                <li><a href="{{route('home')}}">Início</a></li>
+                                <li><a href="{{route('site.latest-posts')}}">Notícias</a></li>
                                 <li><a href="#">Projetos</a></li>
                                 <li><a href="#">Agenda</a></li>
                             </ul>
