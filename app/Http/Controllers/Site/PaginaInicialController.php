@@ -14,7 +14,7 @@ class PaginaInicialController extends Controller
     public function index()
     {
         $latestPosts = Post::where('tipo_pagina', null)->orderBy('id', 'desc')->take(3)->get();
-        $servicos = Post::where('tipo_pagina', 'servico')->orderBy('id', 'desc')->take(3)->get();
+        $servicos = Post::where('tipo_pagina', 'servico')->get();
         // $cargos = Cargo::All();
         $tipoProposicaoList = (new TipoProposicao())->getAll();
         $paginaInicial = PaginaInicial::orderBy('id', 'desc')->first();

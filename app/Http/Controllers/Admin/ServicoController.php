@@ -37,15 +37,16 @@ class ServicoController extends Controller
     //method that save a post with many categories
     public function save(Request $request)
     {
+        $request->slug = $request->slug.'-'.time();
         //validate the request
         $validationResult = $request->validate([
             'title' => 'required|max:255',
-            'slug' => 'required|unique:posts|max:255'
+            'slug' => 'required|max:255'
         ]);
         //add validation messages
         $validationResult['slug.required'] = 'O campo slug é obrigatório';
         $validationResult['title.unique'] = 'O campo título deve ser único';
-        $validationResult['slug.unique'] = 'O campo slug deve ser único';
+        // $validationResult['slug.unique'] = 'O campo slug deve ser único';
 
         //tests if the validation was successful
         if (!$validationResult) {
@@ -53,9 +54,11 @@ class ServicoController extends Controller
         }
         // dd(auth()->user()->id);
         // dd($request->all());
+        // $request['slug'] = $request['slug'].'-'.time();
+        $request->merge(['slug' => $request->slug.time(), 'tipo_pagina' => $this->tipo_pagina]);
+
         $post = Post::create($request->all());
         // $post->user_id = auth()->user()->id;
-
         $fileService = new FileService();
 
         $file = $request->file('file');
@@ -65,6 +68,7 @@ class ServicoController extends Controller
             $post->image = $arquivo->nome;
             $post->thumbnail = $arquivo->nome;
             $post->tipo_pagina = $this->tipo_pagina;
+            $post->slug = $request->slug.'-'.time();
             $post->save();
         }
         // if($file != null){
@@ -91,6 +95,7 @@ class ServicoController extends Controller
     //method that updates a post with many categories
     public function update(Request $request)
     {
+        $request->merge(['slug' => $request->slug.time(), 'tipo_pagina' => $this->tipo_pagina]);
         $id = $request->id;
         $post = Post::find($id);
         //delete the old image

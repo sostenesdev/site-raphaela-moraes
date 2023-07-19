@@ -28,6 +28,7 @@ class PostController extends Controller
     //method that save a post with many categories
     public function save(Request $request)
     {
+        $request->merge(['slug' => $request->slug.time()]);
         //validate the request
         $validationResult = $request->validate([
             'title' => 'required|max:255',

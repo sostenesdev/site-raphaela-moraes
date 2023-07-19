@@ -33,6 +33,7 @@ class ProjetoController extends Controller
     //method that save a post with many categories
     public function save(Request $request)
     {
+        $request->merge(['slug' => $request->slug.time(), 'tipo_pagina' => $this->tipo_pagina]);
         //validate the request
         $validationResult = $request->validate([
             'title' => 'required|max:255',
