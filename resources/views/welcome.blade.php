@@ -38,8 +38,8 @@
                     <div class="section-title">
                         <span class="wow fadeInDown" data-wow-delay=".2s">ùltimas notícias</span>
                         <h2 class="wow fadeInUp" data-wow-delay=".4s">Últimas Notícias</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                        {{-- <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have suffered alteration in some form.</p> --}}
                     </div>
                 </div>
             </div>
