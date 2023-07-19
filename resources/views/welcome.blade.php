@@ -73,7 +73,8 @@
                         <h4>{{$servico->title}}</h4>
                         <p>{{$servico->subtitle}}</p>
                         <div class="button">
-                            <a href="{{ route("site.post", ['slug'=>$servico->slug]) }}" class="btn">Saiba mais</a>
+                            {{-- <a href="{{ route("site.post", ['slug'=>$servico->slug]) }}" class="btn">Saiba mais</a> --}}
+                            <a href="{{ $servico->content_preview }}" target="blank" class="btn">Saiba mais</a>
                         </div>
                     </div>
                 </div>
