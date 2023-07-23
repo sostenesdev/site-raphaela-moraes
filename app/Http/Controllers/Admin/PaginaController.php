@@ -5,29 +5,31 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\DatatableService;
-use App\Models\Post;
+use App\Models\Pagina;
 use App\Models\Category;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Services\FileService;
 
 
-class ProjetoController extends Controller
+class PaginaController extends Controller
 {
-    private $tipo_pagina = 'projeto';
-    private $titulo = 'Projetos';
+    private $tipo_pagina = 'pagina';
+    private $titulo = 'Página';
     //returns a method that displays the view posts
     public function index()
     {
-        return view('admin.posts.index',[
+        return view('admin.paginas.index',[
             'tipo_pagina' => $this->tipo_pagina,
             'titulo' => $this->titulo
         ]);
     }
     public function new()
     {
-        return view('admin.posts.edit', ['post' => new Post(), 'categories' => Category::all(),'tipo_pagina' => $this->tipo_pagina]);
+        return view('admin.paginas.edit', [
+            'post' => new Pagina(),
+            'tipo_pagina' => $this->tipo_pagina,
+        'titulo' => 'Nova '.$this->titulo]);
     }
 
     //method that save a post with many categories
@@ -50,7 +52,7 @@ class ProjetoController extends Controller
         }
         // dd(auth()->user()->id);
         // dd($request->all());
-        $post = Post::create($request->all());
+        $post = Pagina::create($request->all());
         // $post->user_id = auth()->user()->id;
 
         $fileService = new FileService();
@@ -60,26 +62,17 @@ class ProjetoController extends Controller
             // $base64 = $fileService->requestFileToBase64($request, 'file');
             $arquivo = $fileService->save($request, 'file');
             $post->image = $arquivo->nome;
-            $post->thumbnail = $arquivo->nome;
-            $post->tipo_pagina = $this->tipo_pagina;
             $post->save();
         }
-        // if($file != null){
-        //     $imgUrls = $this->imageUpload($request);
-        //     $post->image = $imgUrls->url;
-        //     $post->thumbnail = $imgUrls->thumbnail;
-        //     $post->save();
-        // }
-        $post->categories()->attach($request->categories);
         return redirect()->route('admin.'.$this->tipo_pagina);
     }
 
     //method that edits a post with many categories
     public function edit($id)
     {
-        $post = Post::find($id);
+        $post = Pagina::find($id);
         $post->categories;
-        return view('admin.posts.edit', [
+        return view('admin.paginas.edit', [
             'post' => $post,
             'categories' => Category::all(),
             'titulo' => 'Editar '.$this->titulo,
@@ -90,7 +83,7 @@ class ProjetoController extends Controller
     public function update(Request $request)
     {
         $id = $request->id;
-        $post = Post::find($id);
+        $post = Pagina::find($id);
         //delete the old image
         $oldImage = $post->image;
         $oldThumbnail = $post->thumbnail;
@@ -103,29 +96,18 @@ class ProjetoController extends Controller
                 $arquivo =(new FileService())->save($request, 'file');
             }
             $post->image = $arquivo->nome;
-            $post->thumbnail = $arquivo->nome;
         }
-        // if ($file!=null) {
-        //     if ($oldImage) {
-        //         $this->removeFile($oldImage);
-        //         $this->removeFile($oldThumbnail);
-        //     }
-        //         $imgUrls = $this->imageUpload($request);
-        //         $post->image = $imgUrls->url;
-        //         $post->thumbnail = $imgUrls->thumbnail;
-        // }
+
         $post->update($request->all());
         $post->user_id = auth()->user()->id;
         $post->updated_at = now();
-        $post->tipo_pagina = $this->tipo_pagina;
-        $post->categories()->sync($request->categories);
         return redirect()->route('admin.'.$this->tipo_pagina);
     }
 
     //method that deletes a post with many categories
     public function delete($id)
     {
-        $post = Post::find($id);
+        $post = Pagina::find($id);
         $post->categories()->detach();
         $post->delete();
         return redirect()->route('admin.'.$this->tipo_pagina);
@@ -134,7 +116,7 @@ class ProjetoController extends Controller
     //datatable method
     public function data_table(Request $request)
     {
-        $response = DatatableService::getDataWithBoolFilter(new Post(),'tipo_pagina', $this->tipo_pagina, 'title', $request);
+        $response = DatatableService::getData(new Pagina(),'title', $request);
         return response()->json($response, 200);
     }
 

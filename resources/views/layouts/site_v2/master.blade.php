@@ -70,10 +70,14 @@
                                         <a href="{{route('site.latest-posts')}}">Notícias</a>
                                     </li>
                                     <li class="nav-item"><a href="#">Projetos</a></li>
-                                    <li class="nav-item"><a href="#">Agenda</a> </li>
+                                    {{-- <li class="nav-item"><a href="#">Agenda</a> </li>
                                     <li class="nav-item"><a href="#">Emendas</a></li>
                                     <li class="nav-item"><a href="#">Serviços</a></li>
-                                    <li class="nav-item"><a href="#">Organograma</a></li>
+                                    <li class="nav-item"><a href="#">Organograma</a></li> --}}
+                                    @foreach ($paginas as $p)
+                                        <li class="nav-item"><a href="{{route('site.pagina', ['slug' => $p->slug])}}">{{$p->menu_title}}</a></li>
+                                        
+                                    @endforeach
                                     <!--<li class="nav-item"><a href="#">Blog</a></li>
                                     <li class="nav-item"><a href="contact.html">Contato</a></li> -->
                                 </ul>
@@ -130,7 +134,8 @@
                                 <li><a href="{{route('home')}}">Início</a></li>
                                 <li><a href="{{route('site.latest-posts')}}">Notícias</a></li>
                                 <li><a href="#">Projetos</a></li>
-                                <li><a href="#">Agenda</a></li>
+                                <li><a href="#">Organograma</a></li>
+                                {{-- <li><a href="#">Agenda</a></li> --}}
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -138,11 +143,12 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                             <div class="single-footer f-link">
-                            <h3>Links</h3>
+                            <h3>Páginas</h3>
                             <ul>
-                                <li><a href="#">Emendas</a></li>
-                                <li><a href="#">Serviços</a></li>
-                                <li><a href="#">Organograma</a></li>
+                                @foreach ($paginas as $p)
+                                    <li><a href="{{route('site.pagina', ['slug' => $p->slug])}}">{{$p->menu_title}}</a></li>
+                                @endforeach
+                               
                             </ul>
                         </div>
                        
@@ -153,10 +159,9 @@
                        <div class="single-footer f-link">
                             <h3>Serviços</h3>
                             <ul>
-                                <li><a href="#">Serviço 1</a></li>
-                                <li><a href="#">Serviço 2</a></li>
-                                <li><a href="#">Serviço 3</a></li>
-                                <li><a href="#">Serviço 4</a></li>
+                                @foreach ($servicos as $s)
+                                    <li><a href="{{route('site.servico', ['slug' => $s->slug])}}">{{$s->menu_title}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                         <!-- End Single Widget -->

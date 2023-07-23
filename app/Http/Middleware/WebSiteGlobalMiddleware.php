@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Pagina;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ class WebSiteGlobalMiddleware
         view()->share('categories', Category::all());
         view()->share('latestPosts', Post::Where('highlighted', false)->OrderBy('created_at', 'desc')->take(4)->get());
         view()->share('highlightedPosts', Post::Where('highlighted', true)->OrderBy('created_at', 'desc')->take(4)->get());
+        view()->share('paginas', Pagina::Where('status', 1)->OrderBy('title', 'desc')->get());
+        view()->share('servicos', Post::Where('tipo_pagina', 'servico')->OrderBy('title', 'desc')->get());
 
         return $next($request);
     }

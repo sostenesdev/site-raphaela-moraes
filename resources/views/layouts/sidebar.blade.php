@@ -32,16 +32,41 @@
               				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Posts</span>
             			</a>
 					</li>
+					@php
+						$tipos_pagina = [
+							(object)['nome' => 'posts',   'icone' => 'file-plus','titulo' => 'Notícia'], 
+							(object)['nome' => 'projeto', 'icone' => 'file-plus','titulo' => 'Projeto'], 
+							(object)['nome' => 'servico', 'icone' => 'briefcase','titulo' => 'Serviço Online'], 
+							(object)['nome' => 'pagina',  'icone' => 'file','titulo' => 'Página'], 
+						];
+					@endphp
+				@foreach($tipos_pagina as $tp)
+
+				<li class="sidebar-header">
+					{{$tp->titulo}}s
+				</li>
+
+				<li class="sidebar-item
+				@if($currentRouteName == 'admin.'.$tp->nome)
+					active
+				@endif
+				">
+					<a class="sidebar-link" href="{{route('admin.'.$tp->nome)}}">
+						  <i class="align-middle" data-feather="{{$tp->icone}}"></i> <span class="align-middle">{{$tp->titulo}}s</span>
+					</a>
+				</li>
 
 					<li class="sidebar-item
-					@if($currentRouteName == 'admin.posts.new')
+					@if($currentRouteName == 'admin.'.$tp->nome.'.new')
 						active
 					@endif
 					">
-						<a class="sidebar-link" href="{{route('admin.posts.new')}}">
-              				<i class="align-middle" data-feather="file-plus"></i> <span class="align-middle">Novo Post</span>
+						<a class="sidebar-link" href="{{route('admin.'.$tp->nome.'.new')}}">
+              				<i class="align-middle" data-feather="file-plus"></i> <span class="align-middle">Novo(a) {{$tp->titulo}}</span>
             			</a>
 					</li>
+
+				@endforeach
 
 					<li class="sidebar-item
 					@if($currentRouteName == 'admin.categories')

@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\PaginaInicialController as PaginaInicialContentCo
 use App\Http\Controllers\Admin\ProjetoController;
 use App\Http\Controllers\Site\PaginaInicialController;
 use App\Http\Controllers\Admin\ServicoController;
+use App\Http\Controllers\Admin\PaginaController;
+use App\Http\Controllers\Site\PaginaController as SitePaginaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,9 @@ use App\Http\Controllers\Admin\ServicoController;
 // })->name('home')->middleware('websiteglobal');
 
 Route::get('/',[PaginaInicialController::class, 'index'])->name('home')->middleware('websiteglobal');
+
+//get pagina by slug
+Route::get('/pagina/{slug?}',[SitePaginaController::class, 'index'])->name('site.pagina')->middleware('websiteglobal');
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');
@@ -93,6 +98,7 @@ Route::post('/category/update',[CategoryController::class, 'update'])->name('adm
 $tipos_pagina = [
         (object)['nome' => 'projeto', 'controller' =>ProjetoController::class], 
         (object)['nome' => 'servico', 'controller' =>ServicoController::class], 
+        (object)['nome' => 'pagina', 'controller' =>PaginaController::class], 
     ];
 foreach($tipos_pagina as $tipo_pagina){
 //Projetos
