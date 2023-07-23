@@ -160,7 +160,7 @@
                             <h3>Serviços</h3>
                             <ul>
                                 @foreach ($servicos as $s)
-                                    <li><a href="{{$s->content_preview}}</a></li>
+                                    <li><a href="{{$s->content_preview}}>{{$s->title}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
