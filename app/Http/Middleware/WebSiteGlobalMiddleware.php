@@ -25,7 +25,7 @@ class WebSiteGlobalMiddleware
         view()->share('latestPosts', Post::Where('highlighted', false)->OrderBy('created_at', 'desc')->take(4)->get());
         view()->share('highlightedPosts', Post::Where('highlighted', true)->OrderBy('created_at', 'desc')->take(4)->get());
         view()->share('paginas', Pagina::Where('status', 1)->OrderBy('title', 'desc')->get());
-        view()->share('servicos', Post::Where('tipo_pagina', 'servico')->OrderBy('title', 'desc')->get());
+        view()->share('servicos', Post::Where('tipo_pagina', 'servico')->get());
 
         return $next($request);
     }

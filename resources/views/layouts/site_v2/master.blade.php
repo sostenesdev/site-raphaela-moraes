@@ -51,7 +51,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand logo" href="index.html">
+                            <a class="navbar-brand logo" href="{{route('home')}}">
                                 <img class="logo1" src="{{asset('assets/site_v2/images/logo/logo_rosa.png')}}" alt="Logo" />
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -78,14 +78,16 @@
                                         <li class="nav-item"><a href="{{route('site.pagina', ['slug' => $p->slug])}}">{{$p->menu_title}}</a></li>
                                         
                                     @endforeach
-                                    <!--<li class="nav-item"><a href="#">Blog</a></li>
-                                    <li class="nav-item"><a href="contact.html">Contato</a></li> -->
+                                    {{-- <ul class="nav-item"><a href="#">Serviços</a>
+                                        <li class="nav-item"><a href="contact.html">Contato</a></li>    
+                                    </ul>
+                                     --}}
                                 </ul>
                             </div>
                             <!-- navbar collapse -->
-                            <div class="button">
+                            {{-- <div class="button">
                                 <a href="contact.html" class="btn">Contato</a>
-                            </div>
+                            </div> --}}
                         </nav>
                         <!-- navbar -->
 
@@ -113,7 +115,7 @@
                         <!-- Single Widget -->
                         <div class="f-about single-footer">
                             <div class="logo">
-                                <a href="index.html"><img src="{{asset('assets/site_v2/images/logo/logo_branca.png')}}" alt="Logo"></a>
+                                <a href="{{route('home')}}"><img src="{{asset('assets/site_v2/images/logo/logo_branca.png')}}" alt="Logo"></a>
                             </div>
                             <p>{{isset($subtitulo)?$subtitulo: ""}}</p>
                             <div class="footer-social">
@@ -160,7 +162,7 @@
                             <h3>Serviços</h3>
                             <ul>
                                 @foreach ($servicos as $s)
-                                    <li><a href="{{$s->content_preview}}>{{$s->title}}</a></li>
+                                    <li><a href="{{$s->content_preview}}">{{$s->title}}</a></li>
                                 @endforeach
                             </ul>
                         </div>

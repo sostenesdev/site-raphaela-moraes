@@ -27,7 +27,7 @@ class ServicoController extends Controller
     }
     public function new()
     {
-        return view('admin.posts.edit', [
+        return view('admin.servicos.edit', [
             'post' => new Post(), 
             'categories' => Category::all(),
             'titulo' => 'Cadastrar '.$this->titulo,
@@ -86,7 +86,7 @@ class ServicoController extends Controller
     {
         $post = Post::find($id);
         $post->categories;
-        return view('admin.posts.edit', [
+        return view('admin.servicos.edit', [
             'post' => $post,'categories' => Category::all(),
             'titulo' => 'Editar '.$this->titulo,
             'tipo_pagina' => $this->tipo_pagina]);
