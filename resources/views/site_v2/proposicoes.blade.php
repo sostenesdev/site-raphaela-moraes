@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Proposições</h1>
+                        <h1 class="page-title">Projetos</h1>
                         {{-- <p>{{$model->content_preview}}</p> --}}
                     </div>
                 </div>
