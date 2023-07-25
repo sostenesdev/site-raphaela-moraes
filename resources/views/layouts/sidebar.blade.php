@@ -23,7 +23,7 @@
 						</a>
 					</li>
 
-					<li class="sidebar-item
+					{{-- <li class="sidebar-item
 					@if($currentRouteName == 'admin.posts')
 						active
 					@endif
@@ -31,12 +31,12 @@
 						<a class="sidebar-link" href="{{route('admin.posts')}}">
               				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Posts</span>
             			</a>
-					</li>
+					</li> --}}
 					@php
 						$tipos_pagina = [
-							(object)['nome' => 'posts',   'icone' => 'file-plus','titulo' => 'Notícia'], 
+							(object)['nome' => 'posts',   'icone' => 'image','titulo' => 'Notícia'], 
 							(object)['nome' => 'projeto', 'icone' => 'file-plus','titulo' => 'Projeto'], 
-							(object)['nome' => 'servico', 'icone' => 'briefcase','titulo' => 'Serviço Online'], 
+							(object)['nome' => 'servico', 'icone' => 'briefcase','titulo' => 'Serviço'], 
 							(object)['nome' => 'pagina',  'icone' => 'file','titulo' => 'Página'], 
 						];
 					@endphp
@@ -62,7 +62,7 @@
 					@endif
 					">
 						<a class="sidebar-link" href="{{route('admin.'.$tp->nome.'.new')}}">
-              				<i class="align-middle" data-feather="file-plus"></i> <span class="align-middle">Novo(a) {{$tp->titulo}}</span>
+              				<i class="align-middle" data-feather="{{$tp->icone}}"></i> <span class="align-middle">Novo(a) {{$tp->titulo}}</span>
             			</a>
 					</li>
 
@@ -77,7 +77,7 @@
               				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categorias</span>
             			</a>
 					</li>
-					<li class="sidebar-item
+					{{-- <li class="sidebar-item
 					@if($currentRouteName == 'admin.servico')
 						active
 					@endif
@@ -123,9 +123,11 @@
 						<a class="sidebar-link" href="{{route('admin.categoria-projeto')}}">
               				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categoria de Projeto</span>
             			</a>
+					</li> --}}
+
+					<li class="sidebar-header">
+						Organograma
 					</li>
-
-
                     <li class="sidebar-item
 					@if($currentRouteName == 'admin.organograma')
 						active
@@ -146,6 +148,9 @@
             			</a>
 					</li>
 
+					<li class="sidebar-header">
+						Proposições
+					</li>
 					<li class="sidebar-item
 					@if($currentRouteName == 'admin.proposicao')
 						active
