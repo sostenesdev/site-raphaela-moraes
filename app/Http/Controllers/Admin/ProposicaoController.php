@@ -39,21 +39,21 @@ class ProposicaoController extends Controller
         $validationResult = $request->validate([
             'titulo' => 'required|max:255',
             'slug' => 'required',
-            'descricao' => 'required|max:255',
-            'protocolo' => 'required|max:255',
-            'processo' => 'required|max:255',
-            'data' => 'required|max:255',
-            'situacao' => 'required|max:255',
-            'tipo' => 'required|max:255'
+            // 'descricao' => 'required|max:255',
+            // 'protocolo' => 'required|max:255',
+            // 'processo' => 'required|max:255',
+            // 'data' => 'required|max:255',
+            // 'situacao' => 'required|max:255',
+            // 'tipo' => 'required|max:255'
         ],[
             'titulo.required' => 'O campo título é obrigatório',
             'slug.required' => 'O campo slug é obrigatório',
-            'descricao.required' => 'O campo descrição é obrigatório',
-            'protocolo.required' => 'O campo protocolo é obrigatório',
-            'processo.required' => 'O campo processo é obrigatório',
-            'data.required' => 'O campo data é obrigatório',
-            'situacao.required' => 'O campo situação é obrigatório',
-            'tipo.required' => 'O campo tipo é obrigatório'
+            // 'descricao.required' => 'O campo descrição é obrigatório',
+            // 'protocolo.required' => 'O campo protocolo é obrigatório',
+            // 'processo.required' => 'O campo processo é obrigatório',
+            // 'data.required' => 'O campo data é obrigatório',
+            // 'situacao.required' => 'O campo situação é obrigatório',
+            // 'tipo.required' => 'O campo tipo é obrigatório'
         ]);
 
         //tests if the validation was successful
@@ -76,21 +76,21 @@ class ProposicaoController extends Controller
        $validationResult = $request->validate([
         'titulo' => 'required|max:255',
         'slug' => 'required',
-        'descricao' => 'required|max:255',
-        'protocolo' => 'required|max:255',
-        'processo' => 'required|max:255',
-        'data' => 'required|max:255',
-        'situacao' => 'required|max:255',
-        'tipo' => 'required|max:255'
+        // 'descricao' => 'required|max:255',
+        // 'protocolo' => 'required|max:255',
+        // 'processo' => 'required|max:255',
+        // 'data' => 'required|max:255',
+        // 'situacao' => 'required|max:255',
+        // 'tipo' => 'required|max:255'
     ],[
         'titulo.required' => 'O campo título é obrigatório',
         'slug.required' => 'O campo slug é obrigatório',
-        'descricao.required' => 'O campo descrição é obrigatório',
-        'protocolo.required' => 'O campo protocolo é obrigatório',
-        'processo.required' => 'O campo processo é obrigatório',
-        'data.required' => 'O campo data é obrigatório',
-        'situacao.required' => 'O campo situação é obrigatório',
-        'tipo.required' => 'O campo tipo é obrigatório'
+        // 'descricao.required' => 'O campo descrição é obrigatório',
+        // 'protocolo.required' => 'O campo protocolo é obrigatório',
+        // 'processo.required' => 'O campo processo é obrigatório',
+        // 'data.required' => 'O campo data é obrigatório',
+        // 'situacao.required' => 'O campo situação é obrigatório',
+        // 'tipo.required' => 'O campo tipo é obrigatório'
     ]);
 
        //tests if the validation was successful
@@ -114,6 +114,14 @@ class ProposicaoController extends Controller
     public function data_table(Request $request)
     {
         $response = DatatableService::getData(new Proposicao(), 'titulo', $request);
+       // dd($response->data);
+        foreach($response->data as $r){
+            if($r->categoria != null)
+                $r->categoria = CategoriaProposicao::where('slug', $r->categoria)->first()->nome;
+            
+            if($r->data != null)
+                $r->data = date('d/m/Y', strtotime($r->data));
+        }
         return response()->json($response, 200);
     }
 }

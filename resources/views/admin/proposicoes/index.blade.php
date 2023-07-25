@@ -16,6 +16,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Título</th>
+                                <th>Categoria</th>
                                 <th>Protocolo</th>
                                 <th>Processo</th>
                                 <th>Data</th>
@@ -44,6 +45,12 @@
                 },
                 {
                     data: 'titulo'
+                },
+                  {
+                    class: 'dt-center',
+                    render: function (data, type, row) {
+                        return"<span class='badge rounded-pill bg-info'>"+row.categoria+"</span>";
+                    }
                 },
                 {
                     data: 'protocolo'

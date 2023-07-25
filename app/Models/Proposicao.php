@@ -32,8 +32,8 @@ class Proposicao extends Model
         'id',
     ];
 
-    // public function posts()
-    // {
-    //     return $this->belongsToMany(Post::class);
-    // }
+   //get categoria
+   public function getCategoria(){
+     return CategoriaProposicao::where('slug', $this->categoria)->first();
+   }
 }
