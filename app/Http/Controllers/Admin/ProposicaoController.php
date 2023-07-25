@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoriaProposicao;
 use Illuminate\Http\Request;
 use App\Services\DatatableService;
 use App\Models\Proposicao;
@@ -19,15 +20,17 @@ class ProposicaoController extends Controller
     public function new()
     {
         $tipos = (new TipoProposicao())->getAll();
-        return view('admin.proposicoes.edit', ['model' => new Proposicao(),'tipos'=>$tipos]);
+        $categorias = CategoriaProposicao::All();
+        return view('admin.proposicoes.edit', ['model' => new Proposicao(),'tipos'=>$tipos, 'categorias'=>$categorias]);
         
     }
 
     public function edit($id)
     {
         $tipos = (new TipoProposicao())->getAll();
+        $categorias = CategoriaProposicao::All();
         $model = Proposicao::find($id);
-        return view('admin.proposicoes.edit', ['model' => $model,'tipos'=>$tipos]);
+        return view('admin.proposicoes.edit', ['model' => $model,'tipos'=>$tipos, 'categorias'=>$categorias]);
     }
 
     public function save(Request $request){

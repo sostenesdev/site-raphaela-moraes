@@ -163,6 +163,15 @@
               				<i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Proposições</span>
             			</a>
 					</li>
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.categories')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.categoria-proposicao')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categorias de Proposição</span>
+            			</a>
+					</li>
 
 					<li class="sidebar-item
 					@if($currentRouteName == 'admin.proposicao.new')

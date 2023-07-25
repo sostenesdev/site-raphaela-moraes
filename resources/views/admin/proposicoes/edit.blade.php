@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label for="data"  class="form-label text-bold">Data</label>
                     <input type="date" class="form-control" id="data" name="data" placeholder="Data"
-                        value="{{ \Carbon\Carbon::parse($model->data)->format('d/m/Y') }}">
+                        value="{{ $model->data }}">
                         @error('data')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -95,6 +95,22 @@
                         @endforeach
                     </select>
                     @error('tipo')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        {{-- </div>
+                <div class="row"> --}}
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="categoria"  class="form-label text-bold">Categoria</label>
+                    <select class="form-control" id="categoria" name="categoria" placeholder="Categoria">
+                        <option value="">Selecione uma Categoria</option>
+                        @foreach($categorias as $c)
+                            <option value="{{ $c->slug }}" {{ $c->slug == $model->categoria ? 'selected' : '' }}>{{ $c->nome }}</option>
+                        @endforeach
+                    </select>
+                    @error('categoria')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

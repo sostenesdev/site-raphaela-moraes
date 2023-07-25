@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('categorias_proposicoes', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome');
+            $table->string('slug');
+        });
+
+        Schema::table('proposicoes', function(Blueprint $table){
+            $table->string('categoria')->nullable();
+            $table->longText('conteudo')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('categorias_proposicoes');
+        Schema::table('proposicoes', function(Blueprint $table){
+            $table->dropColumn('categoria');
+            $table->dropColumn('conteudo');
+        });
+    }
+};

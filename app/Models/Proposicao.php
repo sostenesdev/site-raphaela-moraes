@@ -23,7 +23,9 @@ class Proposicao extends Model
         'processo',
         'data',
         'situacao',
-        'tipo'
+        'tipo',
+        'categoria',
+        'conteudo'
     ];
 
     protected $guarded = [

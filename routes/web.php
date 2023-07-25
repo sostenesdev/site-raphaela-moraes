@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AccessDeniedController;
 use App\Http\Controllers\Admin\CategoriaProjetoController;
+use App\Http\Controllers\Admin\CategoriaProposicaoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
@@ -48,6 +49,9 @@ Route::get('/pagina/{slug?}',[SitePaginaController::class, 'index'])->name('site
 Route::get('/organograma',[SiteOrganogramaController::class, 'index'])->name('site.organograma')->middleware('websiteglobal');
 //index proposicoes
 Route::get('/proposicoes',[SiteProposicoesController::class, 'index'])->name('site.proposicoes')->middleware('websiteglobal');
+//Proposicoes por categoria
+Route::get('/proposicoes/{slug}',[SiteProposicoesController::class, 'porCategoria'])->name('site.proposicoes.por-categoria')->middleware('websiteglobal');
+
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');
@@ -101,6 +105,21 @@ Route::get('/category/delete/{id?}',[CategoryController::class, 'delete'])->name
 Route::get('/category/edit/{id?}',[CategoryController::class, 'edit'])->name('admin.categories.edit')->middleware('authpermission:Administrador');
 //create a route to update a category
 Route::post('/category/update',[CategoryController::class, 'update'])->name('admin.categories.update')->middleware('authpermission:Administrador');
+
+//categorias de proposição
+Route::get('/categoria-proposicao',[CategoriaProposicaoController::class, 'index'])->name('admin.categoria-proposicao')->middleware('authpermission:Administrador');
+//create a route to save a category model using CategoryController
+Route::post('/categoria-proposicao/save',[CategoriaProposicaoController::class, 'save'])->name('admin.categoria-proposicao.save')->middleware('authpermission:Administrador');
+
+Route::get('/categoria-proposicao/data_table',[CategoriaProposicaoController::class, 'data_table'])->name('admin.categoria-proposicao.data_table')->middleware('authpermission:Administrador');
+//create a route to delete a category
+Route::get('/categoria-proposicao/delete/{id?}',[CategoriaProposicaoController::class, 'delete'])->name('admin.categoria-proposicao.delete')->middleware('authpermission:Administrador');
+//create a route to edit a category
+Route::get('/categoria-proposicao/edit/{id?}',[CategoriaProposicaoController::class, 'edit'])->name('admin.categoria-proposicao.edit')->middleware('authpermission:Administrador');
+//create a route to update a category
+Route::post('/categoria-proposicao/update',[CategoriaProposicaoController::class, 'update'])->name('admin.categoria-proposicao.update')->middleware('authpermission:Administrador');
+
+
 $tipos_pagina = [
         (object)['nome' => 'projeto', 'controller' =>ProjetoController::class], 
         (object)['nome' => 'servico', 'controller' =>ServicoController::class], 

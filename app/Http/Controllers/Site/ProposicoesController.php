@@ -10,7 +10,14 @@ class ProposicoesController extends Controller
     //index
     public function index()
     {
-        $proposicoes = \App\Models\Proposicao::all();
+        $categorias = \App\Models\CategoriaProposicao::all();
+        return view('site_v2.categorias_proposicoes', compact('categorias'));
+    }
+
+
+    public function porCategoria($slug)
+    {
+        $proposicoes = \App\Models\Proposicao::where('categoria',$slug)->get();
         return view('site_v2.proposicoes', compact('proposicoes'));
     }
 }
