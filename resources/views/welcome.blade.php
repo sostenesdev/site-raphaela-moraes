@@ -49,7 +49,11 @@
                     <!-- Single News -->
                     <div class="single-news wow fadeInUp" data-wow-delay=".2s">
                         <div class="image">
-                            <img class="thumb" width="30%" src="{{$lp->getImage()}}" alt="#">
+                            @if(isset($lp->image))
+                                <img class="thumb" width="30%" src="{{$lp->getImage()}}" alt="{{$lp->title}}">
+                                @else
+                                <img class="thumb" width="30%" src="" alt="{{$lp->title}}">
+                            @endif
                         </div>
                         <div class="content-body">
                             <h4 class="title"><a href="{{ route("site.post", ['slug'=>$lp->slug]) }}">{{$lp->title}}</a></h4>
