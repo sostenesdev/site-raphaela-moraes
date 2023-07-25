@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\ProposicaoController;
 use App\Http\Controllers\Admin\PaginaInicialController as PaginaInicialContentController;
 use App\Http\Controllers\Admin\ProjetoController;
 use App\Http\Controllers\Site\PaginaInicialController;
+use App\Http\Controllers\Site\OrganogramaController as SiteOrganogramaController;
+use App\Http\Controllers\Site\ProposicoesController as SiteProposicoesController;
 use App\Http\Controllers\Admin\ServicoController;
 use App\Http\Controllers\Admin\PaginaController;
 use App\Http\Controllers\Site\PaginaController as SitePaginaController;
@@ -42,6 +44,10 @@ Route::get('/',[PaginaInicialController::class, 'index'])->name('home')->middlew
 
 //get pagina by slug
 Route::get('/pagina/{slug?}',[SitePaginaController::class, 'index'])->name('site.pagina')->middleware('websiteglobal');
+//index organograma
+Route::get('/organograma',[SiteOrganogramaController::class, 'index'])->name('site.organograma')->middleware('websiteglobal');
+//index proposicoes
+Route::get('/proposicoes',[SiteProposicoesController::class, 'index'])->name('site.proposicoes')->middleware('websiteglobal');
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');

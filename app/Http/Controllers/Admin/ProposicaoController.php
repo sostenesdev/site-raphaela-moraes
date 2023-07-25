@@ -59,7 +59,7 @@ class ProposicaoController extends Controller
         }
         $model = Proposicao::create($request->all());
         
-        return redirect()->route('admin.proposicoes');
+        return redirect()->route('admin.proposicao');
     }
 
     public function update(Request $request){
