@@ -119,7 +119,7 @@
         <div class="row">
             <!-- field slug -->
             <div class="form-group mt-1">
-                <label for="descricao"  class="form-label">Descrição</label>
+                <label for="descricao"  class="form-label">Link</label>
                 <textarea type="text" class="form-control" id="descricao" name="descricao" 
                 placeholder="Descrição da proposição">{{ $model->descricao }}</textarea>
                 @error('descricao')

@@ -44,8 +44,8 @@
                 </tr>
                 @if(isset($p->descricao))
                 <tr>
-                    <td><strong>Descrição:</strong></td>
-                    <td>{{$p->descricao}}</td>
+                    <td colspan=2 class="text-center">
+                    <a href="{{$p->descricao}}" class="btn btn-sm btn-primary" target="blank">Saiba Mais</a> </td>
                 </tr>
                 @endif
             </table>
