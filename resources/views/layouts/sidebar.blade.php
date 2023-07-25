@@ -32,6 +32,18 @@
               				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Posts</span>
             			</a>
 					</li> --}}
+					<li class="sidebar-header">
+						Categorias das Notícias
+					</li>
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.categories')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.categories')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categorias</span>
+            			</a>
+					</li>
 					@php
 						$tipos_pagina = [
 							(object)['nome' => 'posts',   'icone' => 'image','titulo' => 'Notícia'], 
@@ -68,15 +80,6 @@
 
 				@endforeach
 
-					<li class="sidebar-item
-					@if($currentRouteName == 'admin.categories')
-						active
-					@endif
-					">
-						<a class="sidebar-link" href="{{route('admin.categories')}}">
-              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Categorias</span>
-            			</a>
-					</li>
 					{{-- <li class="sidebar-item
 					@if($currentRouteName == 'admin.servico')
 						active
