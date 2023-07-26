@@ -81,7 +81,7 @@
             serverSide: true,
             processing: true,
             "lengthChange": false,
-            ajax: '{{ $currentRouteName == 'admin.categories'? route("admin.categories.data_table"): route("admin.categoria-projeto.data_table") }}',
+            ajax: '{{ $currentRouteName == 'admin.categories'||$currentRouteName == 'admin.categories.edit'? route("admin.categories.data_table"): route("admin.categoria-projeto.data_table") }}',
             columns: [{
                     data: 'id'
                 },
