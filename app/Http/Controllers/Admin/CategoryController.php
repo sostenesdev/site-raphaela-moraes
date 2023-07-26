@@ -32,8 +32,8 @@ class CategoryController extends Controller
     {
         //validates the request
         $validationResult = $request->validate([
-            'name' => 'required|unique:categories|max:255',
-            'slug' => 'required|unique:categories|max:255',
+            'name' => 'required|max:255',
+            'slug' => 'required|max:255',
         ]);
         //tests if the validation was successful
         if (!$validationResult) {
@@ -45,6 +45,7 @@ class CategoryController extends Controller
             
         }
         $category = Category::create($request->all());
+        $category->slug = $request->slug.'-'.time();
         $category->save();
         // return response()->json($category, 201);
         return redirect()->route('admin.categories');
@@ -74,8 +75,8 @@ class CategoryController extends Controller
     {
         $validationResult = $request->validate([
             'id' => 'required',
-            'name' => 'required|unique:categories|max:255',
-            'slug' => 'required|unique:categories|max:255',
+            'name' => 'required|max:255',
+            'slug' => 'required|max:255',
         ]);
         //tests if the validation was successful
         if (!$validationResult) {
@@ -95,7 +96,7 @@ class CategoryController extends Controller
         $id = $request->id;
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->slug = $request->slug;
+        $category->slug = $request->slug.'-'.time();
         $category->save();
         //redirect to index
         return redirect()->route('admin.categories'); 
@@ -106,6 +107,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return view('admin.categories', compact('category'));
+        return redirect()->route('admin.categories'); 
     }
 }
