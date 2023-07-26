@@ -19,40 +19,40 @@
 @section('content')
 
 <div class="container">
-<div class="row mt-5 mb-5">
-    <div class="col col-12">
+    <div class="row mt-5 mb-5">
         @foreach($proposicoes as $p)
-        <!-- bootstrap card -->
-        <div class="card  mb-5">
-        <div class="card-header">
-            <h5 class="card-title">{{$p->titulo}}</h5>
-        </div>
-         <div class="card-body">
-         <div class="row">
-            <table class="table">
-                <tr>
-                    <td><strong>Protocolo:</strong></td>
-                    <td>{{$p->protocolo}}</td>
-                </tr>
-                <tr>
-                    <td><strong>Processo:</strong></td>
-                    <td>{{$p->processo}}</td>
-                </tr>
-                <tr>
-                    <td><strong>Data:</strong></td>
-                    <td>{{$p->data}}</td>
-                </tr>
-            </table>
-        </div>
-        <div class="row">
-            <div class="col col-12 text-center">
-                <a class="btn btn-primary" href="{{$p->descricao}}">Saiba Mais</a>
+            <div class="col col-12 mb-5">
+                <!-- bootstrap card -->
+                <div class="card  mb-5">
+                <div class="card-header">
+                    <h5 class="card-title">{{$p->titulo}}</h5>
+                </div>
+                <div class="card-body">
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <td><strong>Protocolo:</strong></td>
+                            <td>{{$p->protocolo}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Processo:</strong></td>
+                            <td>{{$p->processo}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data:</strong></td>
+                            <td>{{$p->data}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col col-12 text-center">
+                        <a class="btn btn-primary" href="{{$p->descricao}}">Saiba Mais</a>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
-        </div>
+    @endforeach
+</div>
 
-        @endforeach
-    </div>
-</div>
-</div>
 @endsection
