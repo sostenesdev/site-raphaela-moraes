@@ -30,26 +30,26 @@
                 </div>
                 <div class="card-body">
                 <div class="row">
-                    <div class="col col-1">
+                    <div class="col col-2">
                     <strong>Protocolo:</strong>
                     </div>
-                    <div class="col col-11 text-left">
+                    <div class="col col-10 text-left">
                         {{$p->protocolo}}
                     </div>
                 </div><hr/>
                 <div class="row">
-                    <div class="col col-1">
+                    <div class="col col-2">
                     <strong>Processo:</strong>
                     </div>
-                    <div class="col col-11 text-left">
+                    <div class="col col-10 text-left">
                         {{$p->processo}}
                     </div>
                 </div><hr/>
                 <div class="row">
-                    <div class="col col-1">
+                    <div class="col col-2">
                     <strong>Data:</strong>
                     </div>
-                    <div class="col col-11 text-left">
+                    <div class="col col-10 text-left">
                         {{(new DateTime($p->data))->format('d/m/Y')}}
                     </div>
                 </div><hr/>
