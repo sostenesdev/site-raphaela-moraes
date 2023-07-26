@@ -70,9 +70,9 @@
                                         <a href="{{route('site.latest-posts')}}">Notícias</a>
                                     </li>
                                     <li class="nav-item"><a href="{{route('site.proposicoes')}}">Projetos</a></li>
-                                    {{-- <li class="nav-item"><a href="#">Agenda</a> </li>
-                                    <li class="nav-item"><a href="#">Emendas</a></li>
+                                    {{-- <li class="nav-item"><a href="#">Emendas</a></li>
                                     <li class="nav-item"><a href="#">Serviços</a></li>--}}
+                                    <li class="nav-item"><a href="{{route('site.agenda')}}">Agenda</a> </li>
                                     <li class="nav-item"><a href="{{route('site.organograma')}}">Organograma</a></li> 
                                     @foreach ($paginas as $p)
                                         <li class="nav-item"><a href="{{route('site.pagina', ['slug' => $p->slug])}}">{{$p->menu_title}}</a></li>
