@@ -20,16 +20,16 @@
 
 <div class="container">
 <div class="row mt-5 mb-5">
-    <div class="col col-12 col-lg-9 text-truncate">
+    <div class="col col-12">
         @foreach($proposicoes as $p)
         <!-- bootstrap card -->
         <div class="card  mb-5">
+        <div class="card-header">
+            <h5 class="card-title">{{$p->titulo}}</h5>
+        </div>
          <div class="card-body">
+         <div class="row">
             <table class="table">
-                <tr>
-                    <td><strong>Título:</strong></td>
-                    <td>{{$p->titulo}}</td>
-                </tr>
                 <tr>
                     <td><strong>Protocolo:</strong></td>
                     <td>{{$p->protocolo}}</td>
@@ -42,13 +42,12 @@
                     <td><strong>Data:</strong></td>
                     <td>{{$p->data}}</td>
                 </tr>
-                @if(isset($p->descricao))
-                <tr>
-                    <td colspan=2 class="text-center">
-                    <a href="{{$p->descricao}}" class="btn btn-sm btn-primary" target="blank">Saiba Mais</a> </td>
-                </tr>
-                @endif
             </table>
+        </div>
+        <div class="row">
+            <div class="col col-12 text-center">
+                <a class="btn btn-primary" href="{{$p->descricao}}">Saiba Mais</a>
+            </div>
         </div>
         </div>
 

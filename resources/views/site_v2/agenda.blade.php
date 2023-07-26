@@ -45,9 +45,6 @@
 </div>
 
 
-<div class="card" id="mamilos" tabindex="-1"></div>
-
-
 @endsection
 
 @section('javascript')
@@ -77,10 +74,6 @@
                 $('#title').html(data.title);
                 $('#description').html(data.description);
                 $("#myModal").show();
-                /*$('#color').val(data.color);  
-                $('#start').val(data.start);)
-                $('#end').val(data.end);
-                $('#descricao').val(data.descricao);*/
             },
             error: function (data) {
                 console.log(data);
