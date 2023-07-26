@@ -19,8 +19,9 @@
 @section('content')
 
 <div class="container">
-    <div class="row mt-5 mb-5">
+    
         @foreach($proposicoes as $p)
+        <div class="row mt-5 mb-5">
             <div class="col col-12 mb-5">
                 <!-- bootstrap card -->
                 <div class="card  mb-5">
@@ -60,8 +61,9 @@
                 </div>
                 </div>
             </div>
-        </div>
+        
     @endforeach
+    </div>
 </div>
 
 @endsection
