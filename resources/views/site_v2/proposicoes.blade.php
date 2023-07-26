@@ -30,7 +30,7 @@
                 </div>
                 <div class="card-body">
                 <div class="row">
-                    <div class="col col-1">
+                    <div class="col col-2">
                     <strong>Protocolo:</strong>
                     </div>
                     <div class="col col-10 text-left">
@@ -38,7 +38,7 @@
                     </div>
                 </div><hr/>
                 <div class="row">
-                    <div class="col col-1">
+                    <div class="col col-2">
                     <strong>Processo:</strong>
                     </div>
                     <div class="col col-10 text-left">
@@ -46,7 +46,7 @@
                     </div>
                 </div><hr/>
                 <div class="row">
-                    <div class="col col-1">
+                    <div class="col col-2">
                     <strong>Data:</strong>
                     </div>
                     <div class="col col-10 text-left">
