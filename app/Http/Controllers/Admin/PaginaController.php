@@ -108,7 +108,7 @@ class PaginaController extends Controller
     public function delete($id)
     {
         $post = Pagina::find($id);
-        $post->categories()->detach();
+        // $post->categories()->detach();
         $post->delete();
         return redirect()->route('admin.'.$this->tipo_pagina);
     }
