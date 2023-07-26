@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccessDeniedController;
+use App\Http\Controllers\Admin\AgendaController;
 use App\Http\Controllers\Admin\CategoriaProjetoController;
 use App\Http\Controllers\Admin\CategoriaProposicaoController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Site\ProposicoesController as SiteProposicoesController
 use App\Http\Controllers\Admin\ServicoController;
 use App\Http\Controllers\Admin\PaginaController;
 use App\Http\Controllers\Site\PaginaController as SitePaginaController;
+use App\Http\Controllers\Site\AgendaController as SiteAgendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,11 @@ use App\Http\Controllers\Site\PaginaController as SitePaginaController;
 // })->name('home')->middleware('websiteglobal');
 
 Route::get('/',[PaginaInicialController::class, 'index'])->name('home')->middleware('websiteglobal');
+
+Route::get('/agenda',[SiteAgendaController::class, 'index'])->name('site.agenda')->middleware('websiteglobal');
+Route::get('/agenda/eventos',[SiteAgendaController::class, 'eventos'])->name('site.agenda.eventos')->middleware('websiteglobal');
+//get evento by id
+Route::get('/agenda/evento/{id?}',[SiteAgendaController::class, 'evento'])->name('site.agenda.evento')->middleware('websiteglobal');
 
 //get pagina by slug
 Route::get('/pagina/{slug?}',[SitePaginaController::class, 'index'])->name('site.pagina')->middleware('websiteglobal');
@@ -118,6 +125,21 @@ Route::get('/categoria-proposicao/delete/{id?}',[CategoriaProposicaoController::
 Route::get('/categoria-proposicao/edit/{id?}',[CategoriaProposicaoController::class, 'edit'])->name('admin.categoria-proposicao.edit')->middleware('authpermission:Administrador');
 //create a route to update a category
 Route::post('/categoria-proposicao/update',[CategoriaProposicaoController::class, 'update'])->name('admin.categoria-proposicao.update')->middleware('authpermission:Administrador');
+
+
+//categorias de proposição
+Route::get('/agenda',[AgendaController::class, 'index'])->name('admin.agenda')->middleware('authpermission:Administrador');
+//create a route to save a category model using CategoryController
+Route::post('/agenda/save',[AgendaController::class, 'save'])->name('admin.agenda.save')->middleware('authpermission:Administrador');
+
+Route::get('/agenda/data_table',[AgendaController::class, 'data_table'])->name('admin.agenda.data_table')->middleware('authpermission:Administrador');
+//create a route to delete a category
+Route::get('/agenda/delete/{id?}',[AgendaController::class, 'delete'])->name('admin.agenda.delete')->middleware('authpermission:Administrador');
+//create a route to edit a category
+Route::get('/agenda/edit/{id?}',[AgendaController::class, 'edit'])->name('admin.agenda.edit')->middleware('authpermission:Administrador');
+//create a route to update a category
+Route::post('/agenda/update',[AgendaController::class, 'update'])->name('admin.agenda.update')->middleware('authpermission:Administrador');
+
 
 
 $tipos_pagina = [

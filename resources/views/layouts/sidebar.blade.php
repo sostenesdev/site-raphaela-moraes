@@ -33,6 +33,18 @@
             			</a>
 					</li> --}}
 					<li class="sidebar-header">
+						Agenda
+					</li>
+					<li class="sidebar-item
+					@if($currentRouteName == 'admin.agenda')
+						active
+					@endif
+					">
+						<a class="sidebar-link" href="{{route('admin.agenda')}}">
+              				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Agenda</span>
+            			</a>
+					</li>
+					<li class="sidebar-header">
 						Categorias das Notícias
 					</li>
 					<li class="sidebar-item
@@ -47,7 +59,7 @@
 					@php
 						$tipos_pagina = [
 							(object)['nome' => 'posts',   'icone' => 'image','titulo' => 'Notícia'], 
-							(object)['nome' => 'projeto', 'icone' => 'file-plus','titulo' => 'Projeto'], 
+							//(object)['nome' => 'projeto', 'icone' => 'file-plus','titulo' => 'Projeto'], 
 							(object)['nome' => 'servico', 'icone' => 'briefcase','titulo' => 'Serviço'], 
 							(object)['nome' => 'pagina',  'icone' => 'file','titulo' => 'Página'], 
 						];
