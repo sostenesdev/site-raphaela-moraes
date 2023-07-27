@@ -100,7 +100,7 @@ class CategoriaProposicaoController extends Controller
         $category->slug = $request->slug;
         $category->save();
         //redirect to index
-        return redirect()->route('admin.categories'); 
+        return redirect()->route('admin.categoria-proposicao'); 
 
     }
 
@@ -108,6 +108,6 @@ class CategoriaProposicaoController extends Controller
     {
         $category = CategoriaProposicao::find($id);
         $category->delete();
-        return view('admin.categories', compact('category'));
+        return redirect()->route('admin.categoria-proposicao'); 
     }
 }

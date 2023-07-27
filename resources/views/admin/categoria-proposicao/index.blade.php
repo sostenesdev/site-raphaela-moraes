@@ -91,10 +91,10 @@
                     class: 'dt-right',
                     render: function (data, type, row) {
                         let buttons =
-                            '<a class="btn btn-sm btn-primary pl-2 pr-2" href="{{ route("admin.categories.edit") }}/' +
+                            '<a class="btn btn-sm btn-primary pl-2 pr-2" href="{{ route("admin.categoria-proposicao.edit") }}/' +
                             row.id + '"><i class="fa fa-pencil"></i></a>';
                         buttons = buttons +
-                            '<a class="btn btn-sm btn-danger  pl-2 pr-2" href="{{ route("admin.categories.delete") }}/' +
+                            '<a class="btn btn-sm btn-danger  pl-2 pr-2" href="{{ route("admin.categoria-proposicao.delete") }}/' +
                             row.id + '"><i class="fa fa-trash"></i></a>';
                         return buttons;
                     }
