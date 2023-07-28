@@ -18,6 +18,7 @@ use App\Http\Controllers\ArquivoController;
 use App\Http\Controllers\Admin\ProposicaoController;
 use App\Http\Controllers\Admin\PaginaInicialController as PaginaInicialContentController;
 use App\Http\Controllers\Admin\ProjetoController;
+use App\Http\Controllers\Admin\ImportarProposicaoController;
 use App\Http\Controllers\Site\PaginaInicialController;
 use App\Http\Controllers\Site\OrganogramaController as SiteOrganogramaController;
 use App\Http\Controllers\Site\ProposicoesController as SiteProposicoesController;
@@ -72,8 +73,6 @@ Route::get('/search',[SitePostController::class, 'search'])->name('site.search')
 //get arquivo by id
 // Route::get('/arquivo/{id}',[ArquivoController::class, 'getById'])->name('site.arquivo_by_id')->middleware('websiteglobal');
 Route::get('/arquivo/{nome}',[ArquivoController::class, 'getByName'])->name('site.arquivo')->middleware('websiteglobal');
-
-
 
 
 Route::prefix('admin')->group(function(){
@@ -218,10 +217,21 @@ Route::post('/proposicao/update',[ProposicaoController::class, 'update'])->name(
 //deletar proposicao
 Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
 
+//ImportarProposicaoController
+Route::get('/importar-proposicao',[ImportarProposicaoController::class, 'index'])->name('admin.importar-proposicao')->middleware('authpermission:Administrador');
+//ImportarProposicaoController processar
+Route::post('/importar-proposicao/processar',[ImportarProposicaoController::class, 'processarArquivoCSV'])->name('admin.importar-proposicao.processar')->middleware('authpermission:Administrador');
+
+
+
 //get pagina inicial
 Route::get('/pagina_inicial',[PaginaInicialContentController::class, 'index'])->name('admin.pagina_inicial')->middleware('authpermission:Administrador');
 //save pagina inicial
 Route::post('/pagina_inicial/save',[PaginaInicialContentController::class, 'save'])->name('admin.pagina_inicial.save')->middleware('authpermission:Administrador');
+
+
+
+
 
 });
 

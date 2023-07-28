@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('proposicoes', function (Blueprint $table) {
             $table->id();
             $table->integer('id_integracao')->default(0);//se não vier da integração: id_integracao = 0
-            $table->string('titulo');
+            $table->text('titulo');
             $table->string('slug')->nullable();
-            $table->string('descricao')->nullable();
+            $table->text('descricao')->nullable();
             $table->string('protocolo')->nullable();
             $table->string('processo')->nullable();
             $table->datetime('data')->nullable();
