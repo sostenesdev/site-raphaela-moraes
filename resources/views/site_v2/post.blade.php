@@ -20,7 +20,7 @@
 
 <div class="container mt-5">
     <div class="row mt-5">
-        <div class="col-12 col-lg-9 text-truncate">
+        <div class="col-12 col-lg-9 text-wrap">
             @if($model->image != null)
                 <img src="{{ $model->getImage()}}"
                     alt="Thumbnail do post {{ $model->title }}">
@@ -30,7 +30,7 @@
 </div>
 <div class="container">
 <div class="row mt-5 mb-5">
-    <div class="col col-12 col-lg-9 text-truncate">
+    <div class="col col-12 col-lg-9 text-wrap">
         {!! $model->content !!}
     </div>
 </div>
