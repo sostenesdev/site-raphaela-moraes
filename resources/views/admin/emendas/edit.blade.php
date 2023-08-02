@@ -62,6 +62,17 @@
                 </div>
             </div>
             </div>
+               <div class="row mt-2">
+                <div class="col col-md-12">
+                    <div class="form-group">
+                        <label for="beneficiario" class="form-label text-bold">Objeto</label>
+                        <textarea class="form-control" id="objeto" name="objeto" placeholder="Objeto">{{ $model->objeto }}</textarea>
+                        @error('objeto')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
             <div class="row mt-2">
                 <div class="col col-md-12">
                     <div class="form-group">

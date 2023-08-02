@@ -33,7 +33,7 @@
                             <p class="card-text">{{$e->descricao}}</p><hr/>
                             <p class="card-text"><strong>Objeto: </strong>{{$e->objeto}}</h5><hr/>
                             <p class="card-text"><strong>Órgão de destino: </strong> {{$e->orgao_destino}}</p><hr/>
-                            <p class="card-text"><strong>Beneficiário: </strong> {{$e->beneficiaro}}</p><hr/>
+                            <p class="card-text"><strong>Beneficiário: </strong> {{$e->beneficiario}}</p><hr/>
                             <p class="card-text"><strong>Estágio do processo: </strong> {{$e->estagio_processo}}</p><hr/>
                             <p class="card-text"><strong>Nº do processo: </strong> {{$e->numero_processo}}&nbsp; | &nbsp;<strong>Valor: </strong> {{$e->valor}}
                             | &nbsp;<strong>Ano: </strong> {{$e->ano}}</p><hr/>
