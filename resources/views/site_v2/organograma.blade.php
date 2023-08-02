@@ -20,6 +20,7 @@
 
 <div class="container">
 <div class="row mt-5 mb-5">
+    @if(isset($pagina_inicial) && isset($pagina_inicial->ativar_organograma)&& $pagina_inicial->ativar_organograma == 1)
     <div class="col col-12 col-lg-9 text-truncate">
         @foreach($cargos as $c)
         <!-- bootstrap card -->
@@ -52,10 +53,8 @@
         </div>
         </div>
         @endforeach
-
-
-
     </div>
+    @endif
 </div>
 </div>
 @endsection

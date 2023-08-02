@@ -73,7 +73,10 @@
                                     <li class="nav-item"><a href="{{route('site.proposicoes.por-categoria', ['slug' => 'indicacao'])}}">Indicações</a></li>
                                     {{-- <li class="nav-item"><a href="#">Serviços</a></li>--}}
                                     <li class="nav-item"><a href="{{route('site.agenda')}}">Agenda</a> </li>
-                                    <li class="nav-item"><a href="{{route('site.organograma')}}">Organograma</a></li> 
+                                    @if(isset($pagina_inicial) && isset($pagina_inicial->ativar_organograma)&& $pagina_inicial->ativar_organograma == 1)
+                                        <li class="nav-item"><a href="{{route('site.organograma')}}">Organograma</a></li> 
+                                    @endif
+                                    <li class="nav-item"><a href="{{route('site.emenda')}}">Emendas Parlamentares</a></li> 
                                     @foreach ($paginas as $p)
                                         <li class="nav-item"><a href="{{route('site.pagina', ['slug' => $p->slug])}}">{{$p->menu_title}}</a></li>
                                         

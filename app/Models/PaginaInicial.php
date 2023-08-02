@@ -28,7 +28,8 @@ class PaginaInicial extends Model
         'facebook',
         'instagram',
         'linkedin',
-        'whatsapp'
+        'whatsapp',
+        'ativar_organograma'
     ];
 
     protected $guarded = [

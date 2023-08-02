@@ -65,6 +65,16 @@
                 <textarea id="tiny" name="sobre_previa">{{ $model->sobre_previa }}</textarea>
             </div>
         </div>
+
+        <div class="row">
+            <div class="form-group mb-3">
+                <label for="ativar_organograma" class="form-label">Ativar Organograma</label>
+                <select name="ativar_organograma" class="form-control">
+                    <option value="">Selecione</option>
+                    <option value="1" {{ $model->ativar_organograma == 1 ? 'selected' : '' }}>Sim</option>
+                    <option value="0" {{ $model->ativar_organograma == 0 ? 'selected' : '' }}>Não</option>
+            </div>
+        </div>
         <div class="row">
             <div class="form-group mb-3">
                 <label for="sobre_previa" class="form-label">Projetos</label>

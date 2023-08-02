@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Pagina;
+use App\Models\PaginaInicial;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,11 +22,12 @@ class WebSiteGlobalMiddleware
     public function handle(Request $request, Closure $next)
     {
         view()->share('currentRouteName', Route::currentRouteName());
-        view()->share('categories', Category::all());
-        view()->share('latestPosts', Post::Where('highlighted', false)->OrderBy('created_at', 'desc')->take(4)->get());
-        view()->share('highlightedPosts', Post::Where('highlighted', true)->OrderBy('created_at', 'desc')->take(4)->get());
+        // view()->share('categories', Category::all());
+        // view()->share('latestPosts', Post::Where('highlighted', false)->OrderBy('created_at', 'desc')->take(4)->get());
+        // view()->share('highlightedPosts', Post::Where('highlighted', true)->OrderBy('created_at', 'desc')->take(4)->get());
         view()->share('paginas', Pagina::Where('status', 1)->OrderBy('title', 'desc')->get());
         view()->share('servicos', Post::Where('tipo_pagina', 'servico')->get());
+        view()->share('pagina_inicial', PaginaInicial::orderBy('id', 'desc')->first());
 
         return $next($request);
     }

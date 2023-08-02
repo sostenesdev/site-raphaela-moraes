@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Admin\FileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\EmendaController;
 use App\Http\Controllers\Admin\OrganogramaController;
 use App\Http\Controllers\Site\PostController as SitePostController;
 use App\Http\Controllers\ArquivoController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Admin\ServicoController;
 use App\Http\Controllers\Admin\PaginaController;
 use App\Http\Controllers\Site\PaginaController as SitePaginaController;
 use App\Http\Controllers\Site\AgendaController as SiteAgendaController;
+use App\Http\Controllers\Site\EmendasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,7 @@ Route::get('/proposicoes',[SiteProposicoesController::class, 'index'])->name('si
 //Proposicoes por categoria
 Route::get('/proposicoes/{slug}',[SiteProposicoesController::class, 'porCategoria'])->name('site.proposicoes.por-categoria')->middleware('websiteglobal');
 
+Route::get('/emendas',[EmendasController::class, 'index'])->name('site.emenda')->middleware('websiteglobal');
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');
@@ -216,6 +219,24 @@ Route::get('/proposicao/edit/{id?}',[ProposicaoController::class, 'edit'])->name
 Route::post('/proposicao/update',[ProposicaoController::class, 'update'])->name('admin.proposicao.update')->middleware('authpermission:Administrador');
 //deletar proposicao
 Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
+
+
+//listar proposicoes
+Route::get('/emenda',[EmendaController::class, 'index'])->name('admin.emenda')->middleware('authpermission:Administrador');
+//cadastrar proposicao
+Route::get('/emenda/new',[EmendaController::class, 'new'])->name('admin.emenda.new')->middleware('authpermission:Administrador');
+//salvar proposicao
+Route::post('/emenda/save',[EmendaController::class, 'save'])->name('admin.emenda.save')->middleware('authpermission:Administrador');
+//datatable para listar proposicao
+Route::get('/emenda/data_table',[EmendaController::class, 'data_table'])->name('admin.emenda.data_table')->middleware('authpermission:Administrador');
+//editar proposicao
+Route::get('/emenda/edit/{id?}',[EmendaController::class, 'edit'])->name('admin.emenda.edit')->middleware('authpermission:Administrador');
+//atualizar proposicao
+Route::post('/emenda/update',[EmendaController::class, 'update'])->name('admin.emenda.update')->middleware('authpermission:Administrador');
+//deletar proposicao
+Route::get('/emenda/delete/{id?}',[EmendaController::class, 'delete'])->name('admin.emenda.delete')->middleware('authpermission:Administrador');
+
+
 
 //ImportarProposicaoController
 Route::get('/importar-proposicao',[ImportarProposicaoController::class, 'index'])->name('admin.importar-proposicao')->middleware('authpermission:Administrador');
