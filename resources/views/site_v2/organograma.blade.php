@@ -56,5 +56,8 @@
     </div>
     @endif
 </div>
+<div class="row justify-content-center text-center pt-5 pb-5">
+    <img src="{{asset('assets/img/organograma.jpeg')}}" alt="Organograma" class="img-fluid">
+</div>
 </div>
 @endsection
