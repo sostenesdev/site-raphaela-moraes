@@ -4,12 +4,12 @@
 
 @section('header_content')
       <!-- Start Hero Area -->
-    <section class="hero-area">
+    <section class="hero-area" style="padding-top: 160px;">
         <!-- Single Slider -->
       <div class="container">
         <div class="hero-inner">
  
-                <div class="row ">
+                <div class="row">
                     <div class="col-lg-6 co-12">
                         <div class="home-slider">
                             <div class="hero-text">
