@@ -59,8 +59,8 @@
     <div class="row justify-content-center text-center pt-5 pb-5">
         <img src="{{asset('assets/img/organograma_gabinete_raphaela.png')}}" alt="Organograma" class="img-fluid">
     </div>
-    <div class="row justify-content-center text-center pt-3 pb-5">
+    <!-- <div class="row justify-content-center text-center pt-3 pb-5">
         <img src="{{asset('assets/img/organoigrama_gabinete_raphaela.png')}}" alt="Organograma" class="img-fluid">
-    </div>
+    </div> -->
 </div>
 @endsection
