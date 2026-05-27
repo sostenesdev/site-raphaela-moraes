@@ -14,7 +14,10 @@
                         <div class="home-slider">
                             <div class="hero-text">
                                 <h1 class="wow fadeInUp" data-wow-delay=".3">{{$model->titulo}}</h1>
-                                <span id="heroDescricao" class="hero-descricao hero-descricao--collapsed wow fadeInUp" data-wow-delay=".5s">{!!$model->subtitulo.$model->sobre_previa!!}</span>
+                                <div id="heroDescricao" class="hero-descricao hero-descricao--collapsed wow fadeInUp" data-wow-delay=".5s">
+                                    <h4 class="hero-subtitulo">{!! $model->subtitulo !!}</h4>
+                                    <div class="hero-sobre">{!! $model->sobre_previa !!}</div>
+                                </div>
                                 <div class="button wow fadeInUp" data-wow-delay=".7s">
                                     <a href="javascript:void(0);" class="btn" id="btnSaibaMais" onclick="toggleHeroTexto()">Saiba Mais</a>
                                 </div>
@@ -92,21 +95,49 @@
 @section('javascript')
 <style>
     .hero-descricao {
-        display: -webkit-box;
         display: block;
         overflow: hidden;
         transition: max-height 0.5s ease;
     }
     .hero-descricao--collapsed {
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
+        max-height: 8em;
         overflow: hidden;
-        max-height: 6.5em;
+        position: relative;
+    }
+    .hero-descricao--collapsed::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.5em;
+        background: linear-gradient(transparent, #f6f9fc);
+        pointer-events: none;
     }
     .hero-descricao--expanded {
-        -webkit-line-clamp: unset;
         max-height: 2000px;
+    }
+    .hero-descricao--expanded::after {
+        display: none;
+    }
+    .hero-subtitulo {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        line-height: 1.5;
+        border-left: 3px solid #fd5189;
+        padding-left: 12px;
+    }
+    .hero-sobre {
+        font-size: 15px;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.7;
+        text-align: justify;
+    }
+    .hero-sobre p {
+        margin-bottom: 10px;
     }
     .hero-area .hero-inner {
         height: auto !important;
