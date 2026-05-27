@@ -10,7 +10,7 @@ class EmendasController extends Controller
     //index
     public function index()
     {
-        $emendas = \App\Models\Emenda::all();
+        $emendas = \App\Models\Emenda::orderBy('ano', 'desc')->get();
         return view('site_v2.emendas', compact('emendas'));
     }
 }
