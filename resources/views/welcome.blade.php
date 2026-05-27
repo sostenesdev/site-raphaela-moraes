@@ -14,9 +14,9 @@
                         <div class="home-slider">
                             <div class="hero-text">
                                 <h1 class="wow fadeInUp" data-wow-delay=".3">{{$model->titulo}}</h1>
-                                <span class="wow fadeInUp" data-wow-delay=".5s">{!!$model->subtitulo.$model->sobre_previa!!}<br></span>
+                                <span id="heroDescricao" class="hero-descricao hero-descricao--collapsed wow fadeInUp" data-wow-delay=".5s">{!!$model->subtitulo.$model->sobre_previa!!}</span>
                                 <div class="button wow fadeInUp" data-wow-delay=".7s">
-                                    <a href="#" class="btn">Saiba Mais</a>
+                                    <a href="javascript:void(0);" class="btn" id="btnSaibaMais" onclick="toggleHeroTexto()">Saiba Mais</a>
                                 </div>
                             </div>
                         </div>
@@ -87,4 +87,47 @@
         </div>
       </div>
     </div>
+@endsection
+
+@section('javascript')
+<style>
+    .hero-descricao {
+        display: -webkit-box;
+        display: block;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+    .hero-descricao--collapsed {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-height: 6.5em;
+    }
+    .hero-descricao--expanded {
+        -webkit-line-clamp: unset;
+        max-height: 2000px;
+    }
+    .hero-area .hero-inner {
+        height: auto !important;
+        min-height: 700px;
+        padding-bottom: 60px;
+    }
+</style>
+<script>
+    function toggleHeroTexto() {
+        var descricao = document.getElementById('heroDescricao');
+        var btn = document.getElementById('btnSaibaMais');
+
+        if (descricao.classList.contains('hero-descricao--collapsed')) {
+            descricao.classList.remove('hero-descricao--collapsed');
+            descricao.classList.add('hero-descricao--expanded');
+            btn.textContent = 'Ver Menos';
+        } else {
+            descricao.classList.remove('hero-descricao--expanded');
+            descricao.classList.add('hero-descricao--collapsed');
+            btn.textContent = 'Saiba Mais';
+        }
+    }
+</script>
 @endsection
