@@ -30,6 +30,7 @@ use App\Http\Controllers\Site\AgendaController as SiteAgendaController;
 use App\Http\Controllers\Site\EmendasController;
 use App\Http\Controllers\Admin\DenunciaController;
 use App\Http\Controllers\Admin\CategoriaDenunciaController;
+use App\Http\Controllers\Site\DenunciasController as SiteDenunciasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,10 @@ Route::get('/organograma',[SiteOrganogramaController::class, 'index'])->name('si
 Route::get('/proposicoes',[SiteProposicoesController::class, 'index'])->name('site.proposicoes')->middleware('websiteglobal');
 //Proposicoes por categoria
 Route::get('/proposicoes/{slug}',[SiteProposicoesController::class, 'porCategoria'])->name('site.proposicoes.por-categoria')->middleware('websiteglobal');
+
+//denuncias
+Route::get('/denuncias',[SiteDenunciasController::class, 'index'])->name('site.denuncias')->middleware('websiteglobal');
+Route::post('/denuncias/save',[SiteDenunciasController::class, 'save'])->name('site.denuncias.save')->middleware('websiteglobal');
 
 Route::get('/emendas',[EmendasController::class, 'index'])->name('site.emenda')->middleware('websiteglobal');
 
