@@ -17,16 +17,16 @@ class ProposicoesController extends Controller
 
     public function porCategoria($slug)
     {
-        switch($slug):
+        switch ($slug):
             case 'indicacao':
-                $nomeCategoria ="Indicações";
+                $nomeCategoria = "Indicações";
                 break;
             default:
-                $nomeCategoria ="Projetos";
+                $nomeCategoria = "Projetos";
                 break;
         endswitch;
 
-        $proposicoes = \App\Models\Proposicao::where('categoria',$slug)->get();
-        return view('site_v2.proposicoes', compact('proposicoes','nomeCategoria'));
+        $proposicoes = \App\Models\Proposicao::where('categoria', $slug)->orderBy('id', 'desc')->get();
+        return view('site_v2.proposicoes', compact('proposicoes', 'nomeCategoria'));
     }
 }
