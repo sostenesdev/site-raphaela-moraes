@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\PaginaController;
 use App\Http\Controllers\Site\PaginaController as SitePaginaController;
 use App\Http\Controllers\Site\AgendaController as SiteAgendaController;
 use App\Http\Controllers\Site\EmendasController;
+use App\Http\Controllers\Admin\DenunciaController;
+use App\Http\Controllers\Admin\CategoriaDenunciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -219,6 +221,34 @@ Route::get('/proposicao/edit/{id?}',[ProposicaoController::class, 'edit'])->name
 Route::post('/proposicao/update',[ProposicaoController::class, 'update'])->name('admin.proposicao.update')->middleware('authpermission:Administrador');
 //deletar proposicao
 Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
+
+//listar denuncias
+Route::get('/denuncia',[DenunciaController::class, 'index'])->name('admin.denuncia')->middleware('authpermission:Administrador');
+//cadastrar denuncia
+Route::get('/denuncia/new',[DenunciaController::class, 'new'])->name('admin.denuncia.new')->middleware('authpermission:Administrador');
+//salvar denuncia
+Route::post('/denuncia/save',[DenunciaController::class, 'save'])->name('admin.denuncia.save')->middleware('authpermission:Administrador');
+//datatable para listar denuncia
+Route::get('/denuncia/data_table',[DenunciaController::class, 'data_table'])->name('admin.denuncia.data_table')->middleware('authpermission:Administrador');
+//editar denuncia
+Route::get('/denuncia/edit/{id?}',[DenunciaController::class, 'edit'])->name('admin.denuncia.edit')->middleware('authpermission:Administrador');
+//atualizar denuncia
+Route::post('/denuncia/update',[DenunciaController::class, 'update'])->name('admin.denuncia.update')->middleware('authpermission:Administrador');
+//deletar denuncia
+Route::get('/denuncia/delete/{id?}',[DenunciaController::class, 'delete'])->name('admin.denuncia.delete')->middleware('authpermission:Administrador');
+
+//categorias de denúncia
+Route::get('/categoria-denuncia',[CategoriaDenunciaController::class, 'index'])->name('admin.categoria-denuncia')->middleware('authpermission:Administrador');
+//salvar categoria de denúncia
+Route::post('/categoria-denuncia/save',[CategoriaDenunciaController::class, 'save'])->name('admin.categoria-denuncia.save')->middleware('authpermission:Administrador');
+//datatable categorias de denúncia
+Route::get('/categoria-denuncia/data_table',[CategoriaDenunciaController::class, 'data_table'])->name('admin.categoria-denuncia.data_table')->middleware('authpermission:Administrador');
+//deletar categoria de denúncia
+Route::get('/categoria-denuncia/delete/{id?}',[CategoriaDenunciaController::class, 'delete'])->name('admin.categoria-denuncia.delete')->middleware('authpermission:Administrador');
+//editar categoria de denúncia
+Route::get('/categoria-denuncia/edit/{id?}',[CategoriaDenunciaController::class, 'edit'])->name('admin.categoria-denuncia.edit')->middleware('authpermission:Administrador');
+//atualizar categoria de denúncia
+Route::post('/categoria-denuncia/update',[CategoriaDenunciaController::class, 'update'])->name('admin.categoria-denuncia.update')->middleware('authpermission:Administrador');
 
 
 //listar proposicoes
