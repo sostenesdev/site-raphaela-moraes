@@ -236,6 +236,8 @@ Route::get('/denuncia/edit/{id?}',[DenunciaController::class, 'edit'])->name('ad
 Route::post('/denuncia/update',[DenunciaController::class, 'update'])->name('admin.denuncia.update')->middleware('authpermission:Administrador');
 //deletar denuncia
 Route::get('/denuncia/delete/{id?}',[DenunciaController::class, 'delete'])->name('admin.denuncia.delete')->middleware('authpermission:Administrador');
+//download arquivo denuncia
+Route::get('/denuncia/arquivo/{id}',[DenunciaController::class, 'download_arquivo'])->name('admin.denuncia.download_arquivo')->middleware('authpermission:Administrador');
 
 //categorias de denúncia
 Route::get('/categoria-denuncia',[CategoriaDenunciaController::class, 'index'])->name('admin.categoria-denuncia')->middleware('authpermission:Administrador');

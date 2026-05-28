@@ -65,22 +65,53 @@
 
         <!-- listar arquivos existentes (no modo edição) -->
         @if($model->id && $model->arquivos && $model->arquivos->count() > 0)
+        @php
+            $extensoesImagem = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+        @endphp
         <div class="row mt-3">
             <div class="form-group">
                 <label class="form-label text-bold">Arquivos Anexados</label>
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered align-middle">
                     <thead>
                         <tr>
+                            <th>Preview</th>
                             <th>Nome</th>
                             <th>Extensão</th>
+                            <th>Ações</th>
                             <th>Remover</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($model->arquivos as $arquivo)
+                        @php
+                            $isImagem = in_array(strtolower($arquivo->extensao), $extensoesImagem);
+                            $mimeMap = [
+                                'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
+                                'png' => 'image/png', 'gif' => 'image/gif',
+                                'webp' => 'image/webp', 'svg' => 'image/svg+xml',
+                            ];
+                            $mime = $mimeMap[strtolower($arquivo->extensao)] ?? '';
+                        @endphp
                         <tr>
+                            <td class="text-center" style="width: 100px;">
+                                @if($isImagem)
+                                    <img src="data:{{ $mime }};base64,{{ $arquivo->base64 }}"
+                                         alt="{{ $arquivo->nome }}"
+                                         style="max-width: 80px; max-height: 80px; border-radius: 4px; cursor: pointer;"
+                                         class="img-thumbnail preview-img"
+                                         data-bs-toggle="modal" data-bs-target="#modalImagem{{ $arquivo->id }}">
+                                @else
+                                    <i class="fa fa-file" style="font-size: 24px; color: #6c757d;"></i>
+                                @endif
+                            </td>
                             <td>{{ $arquivo->nome }}</td>
                             <td><span class="badge bg-secondary">{{ $arquivo->extensao }}</span></td>
+                            <td class="text-center">
+                                <a href="{{ route('admin.denuncia.download_arquivo', $arquivo->id) }}"
+                                   class="btn btn-sm btn-success" title="Baixar">
+                                    <i class="fa fa-download"></i> Baixar
+                                </a>
+                            </td>
                             <td class="text-center">
                                 <input type="checkbox" name="remover_arquivos[]" value="{{ $arquivo->id }}">
                             </td>
@@ -91,6 +122,40 @@
                 <small class="text-muted">Marque os arquivos que deseja remover.</small>
             </div>
         </div>
+
+        <!-- Modais para visualização de imagens em tamanho completo -->
+        @foreach($model->arquivos as $arquivo)
+            @if(in_array(strtolower($arquivo->extensao), $extensoesImagem))
+            @php
+                $mimeMap = [
+                    'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
+                    'png' => 'image/png', 'gif' => 'image/gif',
+                    'webp' => 'image/webp', 'svg' => 'image/svg+xml',
+                ];
+                $mime = $mimeMap[strtolower($arquivo->extensao)] ?? '';
+            @endphp
+            <div class="modal fade" id="modalImagem{{ $arquivo->id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{ $arquivo->nome }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="data:{{ $mime }};base64,{{ $arquivo->base64 }}"
+                                 alt="{{ $arquivo->nome }}"
+                                 style="max-width: 100%; max-height: 70vh;">
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ route('admin.denuncia.download_arquivo', $arquivo->id) }}"
+                               class="btn btn-success"><i class="fa fa-download"></i> Baixar</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endforeach
         @endif
 
     </div>

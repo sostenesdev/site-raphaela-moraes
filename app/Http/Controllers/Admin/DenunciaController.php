@@ -132,4 +132,35 @@ class DenunciaController extends Controller
         }
         return response()->json($response, 200);
     }
+
+    public function download_arquivo($id)
+    {
+        $arquivo = ArquivoDenuncia::find($id);
+        if (!$arquivo) {
+            abort(404);
+        }
+
+        $mimeTypes = [
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+            'webp' => 'image/webp',
+            'svg' => 'image/svg+xml',
+            'pdf' => 'application/pdf',
+            'doc' => 'application/msword',
+            'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'xls' => 'application/vnd.ms-excel',
+            'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'txt' => 'text/plain',
+        ];
+
+        $extensao = strtolower($arquivo->extensao);
+        $mimeType = $mimeTypes[$extensao] ?? 'application/octet-stream';
+        $conteudo = base64_decode($arquivo->base64);
+
+        return response($conteudo, 200)
+            ->header('Content-Type', $mimeType)
+            ->header('Content-Disposition', 'attachment; filename="' . $arquivo->nome . '"');
+    }
 }
