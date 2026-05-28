@@ -94,6 +94,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="captcha" class="form-label text-bold">Verificação <span class="text-danger">*</span></label>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3" style="margin-right: 15px;">
+                                            {!! captcha_img('flat') !!}
+                                        </div>
+                                        <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Digite o código da imagem" required>
+                                    </div>
+                                    @error('captcha')
+                                        <span class="text-danger"><small>{{ $message }}</small></span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mt-4">
                             <div class="col-12 text-center">
                                 <div class="button">

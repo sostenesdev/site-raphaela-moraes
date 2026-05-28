@@ -22,10 +22,13 @@ class DenunciasController extends Controller
             'titulo' => 'required|max:255',
             'conteudo' => 'required',
             'categoria' => 'required',
+            'captcha' => 'required|captcha',
         ], [
             'titulo.required' => 'O campo título é obrigatório',
             'conteudo.required' => 'O campo conteúdo é obrigatório',
             'categoria.required' => 'O campo categoria é obrigatório',
+            'captcha.required' => 'O código de verificação é obrigatório',
+            'captcha.captcha' => 'Código de verificação incorreto',
         ]);
 
         $model = Denuncia::create($request->only(['titulo', 'categoria', 'conteudo']));
