@@ -30,6 +30,7 @@ use App\Http\Controllers\Site\AgendaController as SiteAgendaController;
 use App\Http\Controllers\Site\EmendasController;
 use App\Http\Controllers\Admin\DenunciaController;
 use App\Http\Controllers\Admin\CategoriaDenunciaController;
+use App\Http\Controllers\Admin\AudienciaPublicaController;
 use App\Http\Controllers\Site\DenunciasController as SiteDenunciasController;
 
 /*
@@ -257,6 +258,22 @@ Route::get('/categoria-denuncia/edit/{id?}',[CategoriaDenunciaController::class,
 //atualizar categoria de denúncia
 Route::post('/categoria-denuncia/update',[CategoriaDenunciaController::class, 'update'])->name('admin.categoria-denuncia.update')->middleware('authpermission:Administrador');
 
+//audiências públicas
+Route::get('/audiencia-publica',[AudienciaPublicaController::class, 'index'])->name('admin.audiencia-publica')->middleware('authpermission:Administrador');
+//nova audiência pública
+Route::get('/audiencia-publica/new',[AudienciaPublicaController::class, 'new'])->name('admin.audiencia-publica.new')->middleware('authpermission:Administrador');
+//salvar audiência pública
+Route::post('/audiencia-publica/save',[AudienciaPublicaController::class, 'save'])->name('admin.audiencia-publica.save')->middleware('authpermission:Administrador');
+//datatable audiências públicas
+Route::get('/audiencia-publica/data_table',[AudienciaPublicaController::class, 'data_table'])->name('admin.audiencia-publica.data_table')->middleware('authpermission:Administrador');
+//editar audiência pública
+Route::get('/audiencia-publica/edit/{id?}',[AudienciaPublicaController::class, 'edit'])->name('admin.audiencia-publica.edit')->middleware('authpermission:Administrador');
+//atualizar audiência pública
+Route::post('/audiencia-publica/update',[AudienciaPublicaController::class, 'update'])->name('admin.audiencia-publica.update')->middleware('authpermission:Administrador');
+//deletar audiência pública
+Route::get('/audiencia-publica/delete/{id?}',[AudienciaPublicaController::class, 'delete'])->name('admin.audiencia-publica.delete')->middleware('authpermission:Administrador');
+//download documento audiência pública
+Route::get('/audiencia-publica/documento/{id}',[AudienciaPublicaController::class, 'download_documento'])->name('admin.audiencia-publica.download_documento')->middleware('authpermission:Administrador');
 
 //listar proposicoes
 Route::get('/emenda',[EmendaController::class, 'index'])->name('admin.emenda')->middleware('authpermission:Administrador');

@@ -211,6 +211,29 @@
 			</li>
 
 			<li class="sidebar-header">
+				Audiências Públicas
+			</li>
+			<li class="sidebar-item
+@if($currentRouteName == 'admin.audiencia-publica')
+	active
+@endif
+					">
+				<a class="sidebar-link" href="{{ route('admin.audiencia-publica') }}">
+					<i class="align-middle" data-feather="mic"></i> <span class="align-middle">Audiências Públicas</span>
+				</a>
+			</li>
+			<li class="sidebar-item
+@if($currentRouteName == 'admin.audiencia-publica.new')
+	active
+@endif
+					">
+				<a class="sidebar-link" href="{{ route('admin.audiencia-publica.new') }}">
+					<i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle">Add
+						Audiência Pública</span>
+				</a>
+			</li>
+
+			<li class="sidebar-header">
 				Administração
 			</li>
 
