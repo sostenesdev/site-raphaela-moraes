@@ -72,10 +72,10 @@
 				</li>
 
 				<li class="sidebar-item
-					@if($currentRouteName == 'admin.' . $tp->nome)
-						active
-					@endif
-									">
+							@if($currentRouteName == 'admin.' . $tp->nome)
+								active
+							@endif
+											">
 					<a class="sidebar-link" href="{{ route('admin.' . $tp->nome) }}">
 						<i class="align-middle" data-feather="{{ $tp->icone }}"></i> <span
 							class="align-middle">{{ $tp->titulo }}s</span>
@@ -83,10 +83,10 @@
 				</li>
 
 				<li class="sidebar-item
-					@if($currentRouteName == 'admin.' . $tp->nome . '.new')
-						active
-					@endif
-										">
+							@if($currentRouteName == 'admin.' . $tp->nome . '.new')
+								active
+							@endif
+												">
 					<a class="sidebar-link" href="{{ route('admin.' . $tp->nome . '.new') }}">
 						<i class="align-middle" data-feather="{{ $tp->icone }}"></i> <span class="align-middle">Novo(a)
 							{{ $tp->titulo }}</span>
@@ -171,7 +171,8 @@
 				<a class="sidebar-link" href="{{ route('admin.proposicao.new') }}">
 					<i class="align-middle" data-feather="folder-plus"></i> <span class="align-middle">Add
 						Proposição</span>
-				</li>
+				</a>
+			</li>
 
 			<li class="sidebar-header">
 				Denúncias
@@ -182,9 +183,11 @@
 @endif
 					">
 				<a class="sidebar-link" href="{{ route('admin.denuncia') }}">
-					<i class="align-middle" data-feather="alert-triangle"></i> <span class="align-middle">Denúncias</span>
+					<i class="align-middle" data-feather="alert-triangle"></i> <span
+						class="align-middle">Denúncias</span>
 				</a>
 			</li>
+			{{-- 
 			<li class="sidebar-item
 @if($currentRouteName == 'admin.denuncia.new')
 	active
@@ -195,6 +198,7 @@
 						Denúncia</span>
 				</a>
 			</li>
+			--}}
 			<li class="sidebar-item
 @if($currentRouteName == 'admin.categoria-denuncia' || $currentRouteName == 'admin.categoria-denuncia.edit')
 	active
