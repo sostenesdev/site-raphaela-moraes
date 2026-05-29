@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\DenunciaController;
 use App\Http\Controllers\Admin\CategoriaDenunciaController;
 use App\Http\Controllers\Admin\AudienciaPublicaController;
 use App\Http\Controllers\Site\DenunciasController as SiteDenunciasController;
+use App\Http\Controllers\Site\AudienciasPublicasController as SiteAudienciasPublicasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,10 @@ Route::get('/denuncias',[SiteDenunciasController::class, 'index'])->name('site.d
 Route::post('/denuncias/save',[SiteDenunciasController::class, 'save'])->name('site.denuncias.save')->middleware('websiteglobal');
 
 Route::get('/emendas',[EmendasController::class, 'index'])->name('site.emenda')->middleware('websiteglobal');
+
+//audiências públicas
+Route::get('/audiencias-publicas',[SiteAudienciasPublicasController::class, 'index'])->name('site.audiencias-publicas')->middleware('websiteglobal');
+Route::get('/audiencias-publicas/documento/{id}',[SiteAudienciasPublicasController::class, 'download_documento'])->name('site.audiencias-publicas.download')->middleware('websiteglobal');
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');
