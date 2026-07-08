@@ -5,7 +5,7 @@
     <div class='card'>
         <!-- Card header -->
         <div class='card-header'>
-            <h3 class='mb-0'>Proposições</h3>
+            <h3 class='mb-0'>Emendas</h3>
         </div>
         <!-- Card body -->
         <div class='card-body'>
@@ -25,50 +25,50 @@
                     </table>
                 </div>
             </div>
-    </div>
+        </div>
 @endsection
 
 
-@section('javascript')
-<script type="text/javascript" src="{{ asset('assets/js/funcoes.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#posts-table').DataTable({
-            serverSide: true,
-            processing: true,
-            "lengthChange": false,
-            ajax: '{{ route("admin.emenda.data_table") }}',
-            columns: [{
-                    data: 'id'
-                },
-                {
-                    data: 'titulo'
-                },
-                 {
-                    data: 'numero_processo'
-                },
-                 {
-                    data: 'valor'
-                },
-                 {
-                    data: 'data_liberacao'
-                },
-                {
-                    class: 'dt-center',
-                    render: function (data, type, row) {
-                        let buttons =
-                            '<div class= "text-center"><a class="btn btn-sm btn-primary pl-2 pr-3" href="{{ route("admin.emenda.edit") }}/' +
-                            row.id + '"><i class="fa fa-pencil"></i></a>';
-                        buttons = buttons +
-                            '<a class="btn btn-sm btn-danger pl-2 pr-3" href="{{ route("admin.emenda.delete") }}/' +
-                            row.id + '"><i class="fa fa-trash"></i></a></div>';
-                        return buttons;
+    @section('javascript')
+        <script type="text/javascript" src="{{ asset('assets/js/funcoes.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#posts-table').DataTable({
+                    serverSide: true,
+                    processing: true,
+                    "lengthChange": false,
+                    ajax: '{{ route("admin.emenda.data_table") }}',
+                    columns: [{
+                        data: 'id'
+                    },
+                    {
+                        data: 'titulo'
+                    },
+                    {
+                        data: 'numero_processo'
+                    },
+                    {
+                        data: 'valor'
+                    },
+                    {
+                        data: 'data_liberacao'
+                    },
+                    {
+                        class: 'dt-center',
+                        render: function (data, type, row) {
+                            let buttons =
+                                '<div class= "text-center"><a class="btn btn-sm btn-primary pl-2 pr-3" href="{{ route("admin.emenda.edit") }}/' +
+                                row.id + '"><i class="fa fa-pencil"></i></a>';
+                            buttons = buttons +
+                                '<a class="btn btn-sm btn-danger pl-2 pr-3" href="{{ route("admin.emenda.delete") }}/' +
+                                row.id + '"><i class="fa fa-trash"></i></a></div>';
+                            return buttons;
+                        }
                     }
-                }
-            ]
-        });
-    });
+                    ]
+                });
+            });
 
-</script>
+        </script>
 
-@endsection
+    @endsection

@@ -28,6 +28,11 @@ use App\Http\Controllers\Admin\PaginaController;
 use App\Http\Controllers\Site\PaginaController as SitePaginaController;
 use App\Http\Controllers\Site\AgendaController as SiteAgendaController;
 use App\Http\Controllers\Site\EmendasController;
+use App\Http\Controllers\Admin\DenunciaController;
+use App\Http\Controllers\Admin\CategoriaDenunciaController;
+use App\Http\Controllers\Admin\AudienciaPublicaController;
+use App\Http\Controllers\Site\DenunciasController as SiteDenunciasController;
+use App\Http\Controllers\Site\AudienciasPublicasController as SiteAudienciasPublicasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +67,15 @@ Route::get('/proposicoes',[SiteProposicoesController::class, 'index'])->name('si
 //Proposicoes por categoria
 Route::get('/proposicoes/{slug}',[SiteProposicoesController::class, 'porCategoria'])->name('site.proposicoes.por-categoria')->middleware('websiteglobal');
 
+//denuncias
+Route::get('/denuncias',[SiteDenunciasController::class, 'index'])->name('site.denuncias')->middleware('websiteglobal');
+Route::post('/denuncias/save',[SiteDenunciasController::class, 'save'])->name('site.denuncias.save')->middleware('websiteglobal');
+
 Route::get('/emendas',[EmendasController::class, 'index'])->name('site.emenda')->middleware('websiteglobal');
+
+//audiências públicas
+Route::get('/audiencias-publicas',[SiteAudienciasPublicasController::class, 'index'])->name('site.audiencias-publicas')->middleware('websiteglobal');
+Route::get('/audiencias-publicas/documento/{id}',[SiteAudienciasPublicasController::class, 'download_documento'])->name('site.audiencias-publicas.download')->middleware('websiteglobal');
 
 //route to get post by slug
 Route::get('/post/{slug?}',[SitePostController::class, 'post'])->name('site.post')->middleware('websiteglobal');
@@ -220,6 +233,52 @@ Route::post('/proposicao/update',[ProposicaoController::class, 'update'])->name(
 //deletar proposicao
 Route::get('/proposicao/delete/{id?}',[ProposicaoController::class, 'delete'])->name('admin.proposicao.delete')->middleware('authpermission:Administrador');
 
+//listar denuncias
+Route::get('/denuncia',[DenunciaController::class, 'index'])->name('admin.denuncia')->middleware('authpermission:Administrador');
+//cadastrar denuncia
+Route::get('/denuncia/new',[DenunciaController::class, 'new'])->name('admin.denuncia.new')->middleware('authpermission:Administrador');
+//salvar denuncia
+Route::post('/denuncia/save',[DenunciaController::class, 'save'])->name('admin.denuncia.save')->middleware('authpermission:Administrador');
+//datatable para listar denuncia
+Route::get('/denuncia/data_table',[DenunciaController::class, 'data_table'])->name('admin.denuncia.data_table')->middleware('authpermission:Administrador');
+//editar denuncia
+Route::get('/denuncia/edit/{id?}',[DenunciaController::class, 'edit'])->name('admin.denuncia.edit')->middleware('authpermission:Administrador');
+//atualizar denuncia
+Route::post('/denuncia/update',[DenunciaController::class, 'update'])->name('admin.denuncia.update')->middleware('authpermission:Administrador');
+//deletar denuncia
+Route::get('/denuncia/delete/{id?}',[DenunciaController::class, 'delete'])->name('admin.denuncia.delete')->middleware('authpermission:Administrador');
+//download arquivo denuncia
+Route::get('/denuncia/arquivo/{id}',[DenunciaController::class, 'download_arquivo'])->name('admin.denuncia.download_arquivo')->middleware('authpermission:Administrador');
+
+//categorias de denúncia
+Route::get('/categoria-denuncia',[CategoriaDenunciaController::class, 'index'])->name('admin.categoria-denuncia')->middleware('authpermission:Administrador');
+//salvar categoria de denúncia
+Route::post('/categoria-denuncia/save',[CategoriaDenunciaController::class, 'save'])->name('admin.categoria-denuncia.save')->middleware('authpermission:Administrador');
+//datatable categorias de denúncia
+Route::get('/categoria-denuncia/data_table',[CategoriaDenunciaController::class, 'data_table'])->name('admin.categoria-denuncia.data_table')->middleware('authpermission:Administrador');
+//deletar categoria de denúncia
+Route::get('/categoria-denuncia/delete/{id?}',[CategoriaDenunciaController::class, 'delete'])->name('admin.categoria-denuncia.delete')->middleware('authpermission:Administrador');
+//editar categoria de denúncia
+Route::get('/categoria-denuncia/edit/{id?}',[CategoriaDenunciaController::class, 'edit'])->name('admin.categoria-denuncia.edit')->middleware('authpermission:Administrador');
+//atualizar categoria de denúncia
+Route::post('/categoria-denuncia/update',[CategoriaDenunciaController::class, 'update'])->name('admin.categoria-denuncia.update')->middleware('authpermission:Administrador');
+
+//audiências públicas
+Route::get('/audiencia-publica',[AudienciaPublicaController::class, 'index'])->name('admin.audiencia-publica')->middleware('authpermission:Administrador');
+//nova audiência pública
+Route::get('/audiencia-publica/new',[AudienciaPublicaController::class, 'new'])->name('admin.audiencia-publica.new')->middleware('authpermission:Administrador');
+//salvar audiência pública
+Route::post('/audiencia-publica/save',[AudienciaPublicaController::class, 'save'])->name('admin.audiencia-publica.save')->middleware('authpermission:Administrador');
+//datatable audiências públicas
+Route::get('/audiencia-publica/data_table',[AudienciaPublicaController::class, 'data_table'])->name('admin.audiencia-publica.data_table')->middleware('authpermission:Administrador');
+//editar audiência pública
+Route::get('/audiencia-publica/edit/{id?}',[AudienciaPublicaController::class, 'edit'])->name('admin.audiencia-publica.edit')->middleware('authpermission:Administrador');
+//atualizar audiência pública
+Route::post('/audiencia-publica/update',[AudienciaPublicaController::class, 'update'])->name('admin.audiencia-publica.update')->middleware('authpermission:Administrador');
+//deletar audiência pública
+Route::get('/audiencia-publica/delete/{id?}',[AudienciaPublicaController::class, 'delete'])->name('admin.audiencia-publica.delete')->middleware('authpermission:Administrador');
+//download documento audiência pública
+Route::get('/audiencia-publica/documento/{id}',[AudienciaPublicaController::class, 'download_documento'])->name('admin.audiencia-publica.download_documento')->middleware('authpermission:Administrador');
 
 //listar proposicoes
 Route::get('/emenda',[EmendaController::class, 'index'])->name('admin.emenda')->middleware('authpermission:Administrador');

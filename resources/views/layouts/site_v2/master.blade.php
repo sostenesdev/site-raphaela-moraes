@@ -77,6 +77,8 @@
                                         <li class="nav-item"><a href="{{route('site.organograma')}}">Organograma</a></li> 
                                     @endif
                                     <li class="nav-item"><a href="{{route('site.emenda')}}">Emendas Parlamentares</a></li> 
+                                    <li class="nav-item"><a href="{{route('site.denuncias')}}">Denúncias</a></li>
+                                    <li class="nav-item"><a href="{{route('site.audiencias-publicas')}}">Audiências Públicas</a></li>
                                     @foreach ($paginas as $p)
                                         <li class="nav-item"><a href="{{route('site.pagina', ['slug' => $p->slug])}}">{{$p->menu_title}}</a></li>
                                         
@@ -141,6 +143,8 @@
                                 <li><a href="#">Projetos</a></li>
                                 <li><a href="{{route('site.organograma')}}">Organograma</a></li>
                                 <li><a href="{{route('site.proposicoes')}}">Proposições</a></li>
+                                <li><a href="{{route('site.denuncias')}}">Denúncias</a></li>
+                                <li><a href="{{route('site.audiencias-publicas')}}">Audiências Públicas</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
