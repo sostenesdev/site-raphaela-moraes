@@ -8,6 +8,16 @@
             <div class="col-lg-8 offset-lg-2 col-12">
                 <div class="breadcrumbs-content">
                     <h1 class="page-title">Emendas Parlamentares</h1>
+                     <p>
+                        Critérios de Eficiência Alocativa das Emendas
+As emendas parlamentares deste mandato são destinadas com base em critérios técnicos de Eficiência Alocativa, divididos em três frentes:
+
+Avaliação de Cenários de Urgência: Priorização de recursos para a Saúde, Proteção Especializada (como a AMAES e Pestalozzi) e Causa Animal (CCZ e Programa Arca), atendendo a demandas sociais imediatas do município.
+
+Alinhamento com as Secretarias Municipais: Destinação de verbas diretamente aos Conselhos de Escola (EMEFs e CMEIs) em conformidade com as metas e prioridades da Secretaria Municipal de Educação, garantindo agilidade na ponta.
+
+Estudos de Impacto Social: Apoio a projetos culturais, esportivos e de desenvolvimento econômico que comprovadamente atuam na redução da vulnerabilidade social nas comunidades da Serra..
+                    </p>
                     {{-- <p>{{$model->content_preview }}</p>--}}
                 </div>
             </div>
